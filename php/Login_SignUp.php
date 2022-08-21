@@ -46,10 +46,10 @@
                     </h2>
                     <input type="text" placeholder="Nombre completo" name="nombre_completo">
                     <input type="text" placeholder="Correo Electronico" name="correo">
-                    <input type="password" placeholder="Contraseña">
-                    <input type="password" placeholder="Repita contraseña">
-                    <input name="intereses" type="radio" value="">Compradores
-                    <input name="intereses" type="radio" value="">Vendedores
+                    <input type="password" placeholder="Contraseña" name="contrasena">
+                    <input type="password" placeholder="Repita contraseña" name="Repi_contrasena">
+                    <input type="radio" name="Tipo" value="Compradores">Compradores
+                    <input type="radio" name="Tipo" value="Vendedores">Vendedores
                     <br>
                     <button>
                         Regístrarse

@@ -1,4 +1,5 @@
--- Tabla de permisos para el acceso de los clientes y vendedores --
+SET GLOBAL log_bin_trust_function_creators = 1;
+
 CREATE TABLE IF NOT EXISTS permisos
 (
     id     INT         NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -6,12 +7,11 @@ CREATE TABLE IF NOT EXISTS permisos
     CONSTRAINT permisos_nombre_unico UNIQUE (nombre)
 );
 
--- Se insertar los 2 tipos de usuarios --
 INSERT INTO permisos (nombre)
 VALUES ('VENDEDORES'),
-       ('CLIENTES');
+       ('COMPRADORES')
+       ('ADMINISTRADORES');
 
--- Se obtiene el id del permiso por medio de una función --
 DELIMITER @@
 CREATE FUNCTION get_permisos_id(nombre_permiso VARCHAR(45)) RETURNS INT
 BEGIN
@@ -27,33 +27,72 @@ CREATE TABLE IF NOT EXISTS vendedores
     id              INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
     permisos_id     INT          NOT NULL,
     nombre_completo VARCHAR(100) NOT NULL,
-    telefono        VARCHAR(20)  NOT NULL,
     correo          VARCHAR(200) NOT NULL,
-    hash_contrasena VARCHAR(500) NOT NULL,
+    contrasena      VARCHAR(500) NOT NULL,
+    habilitado      BOOLEAN      NOT NULL DEFAULT true,
     CONSTRAINT vendedores_correo_unique UNIQUE (correo),
     CONSTRAINT fk_permisos_vendedores_permisos_id FOREIGN KEY (permisos_id) REFERENCES permisos (id)
 );
+
+CREATE TABLE IF NOT EXISTS lugares
+(
+    id     INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    CONSTRAINT nombre_unique UNIQUE (nombre)
+);
+
+INSERT INTO lugares (nombre)
+VALUES ('UPB'),
+       ('Delacuesta'),
+       ('Parque caracoli');
+
+DELIMITER @@
+CREATE FUNCTION get_lugares_name(v_id_lugares INT)
+    RETURNS VARCHAR(255)
+    LANGUAGE SQL
+    NOT DETERMINISTIC
+BEGIN
+    SELECT nombre INTO @result FROM lugares WHERE id = v_id_lugares;
+    return @result;
+END;
+@@
+
+CREATE FUNCTION get_lugares_id(v_nombre_lugares VARCHAR(255))
+    RETURNS INT
+    LANGUAGE SQL
+    NOT DETERMINISTIC
+BEGIN
+    SELECT id INTO @result FROM lugares WHERE nombre = v_nombre_lugares;
+    return @result;
+END;
+@@
+
+DELIMITER ;
 
 -- -- Inventario -- --
 CREATE TABLE IF NOT EXISTS inventario
 (
     id             INT            NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    lugar_id       INT            NOT NULL,
+    vendedor_id    INT            NOT NULL,
     cantidad       INT            NOT NULL DEFAULT 0,
     nombre         VARCHAR(255)   NOT NULL,
     descripcion    VARCHAR(10000) NOT NULL,
     precio         DOUBLE         NOT NULL,
     imagen         LONGBLOB,
-    CONSTRAINT unique_producto UNIQUE (nombre)
+    habilitado     BOOLEAN      NOT NULL DEFAULT true,
+    CONSTRAINT fk_id_lugares FOREIGN KEY (lugar_id) REFERENCES lugares (id),
+    CONSTRAINT fk_id_vendedor FOREIGN KEY (vendedor_id) REFERENCES vendedores (id)
 );
 
 -- -- Clientes -- --
-CREATE TABLE IF NOT EXISTS clientes
+CREATE TABLE IF NOT EXISTS compradores
 (
     id              INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
     permisos_id     INT          NOT NULL,
     nombre_completo VARCHAR(100) NOT NULL,
-    telefono        VARCHAR(20)  NOT NULL,
     correo          VARCHAR(200) NOT NULL,
-    hash_contrasena VARCHAR(500) NOT NULL,
+    contrasena      VARCHAR(500) NOT NULL,
+    habilitado      BOOLEAN      NOT NULL DEFAULT true,
     CONSTRAINT clientes_correo_unique UNIQUE (correo)
 );
