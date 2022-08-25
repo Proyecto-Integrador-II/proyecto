@@ -8,7 +8,7 @@ body {
 .item3 { grid-area: main; }
 
 
-.grid-container {
+.grid-containers {
 display: grid;
 grid-template-areas:
   'header header header header'
