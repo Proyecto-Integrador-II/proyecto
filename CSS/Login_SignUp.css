@@ -89,6 +89,7 @@ main{
 .formulario__login{
     opacity: 1;
     display: block;
+    
 }
 .formulario__register{
     display: none;
@@ -122,9 +123,14 @@ main{
 
 #contra{
     position: relative;
-    top: -20px;
-    color: white;
+    top: -40px;
+    color: #FF8000;
     border-radius: 2px;
-
-
+    left: 38px;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+#contra:hover{
+    color: black;
+}
+
