@@ -118,3 +118,13 @@ main{
         position: relative;
     }
 }
+
+
+#contra{
+    position: relative;
+    top: -20px;
+    color: white;
+    border-radius: 2px;
+
+
+}
