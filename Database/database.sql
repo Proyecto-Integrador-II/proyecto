@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS permisos
 
 INSERT INTO permisos (nombre)
 VALUES ('VENDEDORES'),
-       ('COMPRADORES')
+       ('COMPRADORES'),
        ('ADMINISTRADORES');
 
 DELIMITER @@
