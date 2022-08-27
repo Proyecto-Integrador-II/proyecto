@@ -22,7 +22,6 @@
                     <div class="search">
                         <form action="#">
                             <input type="text"
-                                id = "buscar"
                                 placeholder="Buscar productos"
                                 name="search">                            
                         </form>
@@ -70,7 +69,6 @@
 
                     </div>
                 </div>  
-        </div>
-        <script src="busqueda.js"> </script>
+          </div>
     </body>
 </html>
