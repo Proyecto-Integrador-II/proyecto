@@ -24,7 +24,7 @@
                     <h2>
                         Recuperar Contraseña
                     </h2>
-                    <input type="text" placeholder="Correo Electronico">
+                    <input type="email"  placeholder="Correo Electronico" required>
                     <button>
                         Enviar
                     </button>

@@ -34,8 +34,8 @@
                     <h2>
                         Iniciar Sesión
                     </h2>
-                    <input type="text" placeholder="Correo Electronico">
-                    <input type="password" placeholder="Contraseña">
+                    <input type="text" placeholder="Correo Electronico" required >
+                    <input type="password" placeholder="Contraseña"required >
                     <button>
                         Entrar
                     </button>
