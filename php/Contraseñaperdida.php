@@ -20,26 +20,29 @@
                 </div>
             </div>
             <div class="contenedor__login-register">
-                <form action="" class="formulario__login">
+                <form name ="completo" action="correo.php" class="formulario__login" method="POST">
                     <h2>
                         Recuperar Contraseña
                     </h2>
-                    <input type="email"  placeholder="Correo Electronico" required>
-                    <button>
-                        Enviar
-                    </button>
+                    <input type="email" name="email" placeholder="Correo Electronico" required>
+                    <input id="enviar" type="submit" name="enviar" placeholder="Enviar" >
+
+
+
+
                     <a id="pregunta">¿Ya tienes una cuenta?</a>
                     <a id="contra" href="Login_Signup.php">
                         Iniciar sesión
                     </a>
                 </form>
-                <form action="registro_usuario_be.php" method="POST" class="formulario__register">
-                    <h2>
-                    <br>
-                </form>
+
+
             </div>
         </div>
     </main>
+
+
+
 
 </body>
 </html>
