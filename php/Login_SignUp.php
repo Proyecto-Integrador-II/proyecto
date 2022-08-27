@@ -39,6 +39,10 @@
                     <button>
                         Entrar
                     </button>
+
+                    <button id="contra" >
+                        ¿Olvidaste tú contraseña?
+                    </button>
                 </form>
                 <form action="registro_usuario_be.php" method="POST" class="formulario__register">
                     <h2>
