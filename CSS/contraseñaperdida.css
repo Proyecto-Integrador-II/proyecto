@@ -137,6 +137,9 @@ main{
     left: 30px;
     font-family: Arial, Helvetica, sans-serif;
     top: 20px;
+    left: 160px;
+    font-family: Arial, Helvetica, sans-serif;
+    top: -8px;
 }
 
 #contra:hover{
@@ -146,6 +149,7 @@ main{
 #pregunta{
     position: relative;
     left: 10px;
+    left: -150px;
     top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     
@@ -157,5 +161,3 @@ main{
     height: 40px;
     border-radius: 2px;
 }
-
-

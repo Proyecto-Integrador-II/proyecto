@@ -26,23 +26,25 @@
                     </h2>
                     <input type="email" name="email" placeholder="Correo Electronico" required>
                     <input id="enviar" type="submit" name="enviar" placeholder="Enviar" >
-
-
-
-
+                <form action="" class="formulario__login">
+                    <h2>
+                        Recuperar Contraseña
+                    </h2>
+                    <input type="email"  placeholder="Correo Electronico" required>
+                    <button>
+                        Enviar
+                    </button>
                     <a id="pregunta">¿Ya tienes una cuenta?</a>
                     <a id="contra" href="Login_Signup.php">
                         Iniciar sesión
                     </a>
                 </form>
-
-
+                <form action="registro_usuario_be.php" method="POST" class="formulario__register">
+                    <h2>
+                    <br>
+                </form>
             </div>
         </div>
     </main>
-
-
-
-
 </body>
 </html>

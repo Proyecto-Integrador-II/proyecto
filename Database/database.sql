@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS permisos
 
 INSERT INTO permisos (nombre)
 VALUES ('VENDEDORES'),
-       ('COMPRADORES')
+       ('COMPRADORES'),
        ('ADMINISTRADORES');
 
 DELIMITER @@
@@ -21,16 +21,16 @@ END;
 @@
 DELIMITER ;
 
--- Se crea la tabla vendedores con los respectivos datos personales --
-CREATE TABLE IF NOT EXISTS vendedores
+-- Se crea la tabla usuarios con los respectivos datos personales --
+CREATE TABLE IF NOT EXISTS usuarios
 (
     id              INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
     permisos_id     INT          NOT NULL,
-    nombre_completo VARCHAR(100) NOT NULL,
+    nombre          VARCHAR(100) NOT NULL,
     correo          VARCHAR(200) NOT NULL,
     contrasena      VARCHAR(500) NOT NULL,
     habilitado      BOOLEAN      NOT NULL DEFAULT true,
-    CONSTRAINT vendedores_correo_unique UNIQUE (correo),
+    CONSTRAINT usuarios_correo_unique UNIQUE (correo),
     CONSTRAINT fk_permisos_vendedores_permisos_id FOREIGN KEY (permisos_id) REFERENCES permisos (id)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS inventario
 (
     id             INT            NOT NULL PRIMARY KEY AUTO_INCREMENT,
     lugar_id       INT            NOT NULL,
-    vendedor_id    INT            NOT NULL,
+    usuario_id    INT            NOT NULL,
     cantidad       INT            NOT NULL DEFAULT 0,
     nombre         VARCHAR(255)   NOT NULL,
     descripcion    VARCHAR(10000) NOT NULL,
@@ -82,17 +82,5 @@ CREATE TABLE IF NOT EXISTS inventario
     imagen         LONGBLOB,
     habilitado     BOOLEAN      NOT NULL DEFAULT true,
     CONSTRAINT fk_id_lugares FOREIGN KEY (lugar_id) REFERENCES lugares (id),
-    CONSTRAINT fk_id_vendedor FOREIGN KEY (vendedor_id) REFERENCES vendedores (id)
-);
-
--- -- Clientes -- --
-CREATE TABLE IF NOT EXISTS compradores
-(
-    id              INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    permisos_id     INT          NOT NULL,
-    nombre_completo VARCHAR(100) NOT NULL,
-    correo          VARCHAR(200) NOT NULL,
-    contrasena      VARCHAR(500) NOT NULL,
-    habilitado      BOOLEAN      NOT NULL DEFAULT true,
-    CONSTRAINT clientes_correo_unique UNIQUE (correo)
+    CONSTRAINT fk_id_usuarios FOREIGN KEY (usuario_id) REFERENCES usuarios (id)
 );
