@@ -9,7 +9,6 @@
 </head>
 <body>
     <main>
-
         <div class="contenedor__editar-producto">
             <form action="" method="POST" class="">
                 <h2>
@@ -23,10 +22,9 @@
                 <input type="text" placeholder="habilitado" name="habilitado">
                 <button type="submit" name="Cambiar" value="Cambiar">
                     Actualizar
-                </button>
+                </button>   
             </form>
         </div>
-    
     </main>
 </body>
 </html>
