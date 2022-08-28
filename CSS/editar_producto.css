@@ -12,10 +12,10 @@ main{
 .contenedor__editar-producto{
     align-items:center;
     width: 100%;
-    max-width: 380px;
+    max-width: 600px;
     position: relative;
     top: -500px;
-    left: 450px;
+    left: 350px;
     transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
 }
 .contenedor__editar-producto form{
@@ -47,10 +47,11 @@ main{
     color: white;
     cursor: pointer;
     border-radius: 2px;
-    left: 90px;
+    left: 120px;
     position: relative;
     top: -20px;
 }
+
 
 @media screen and (max-width: 850px){
     main{
@@ -64,4 +65,17 @@ main{
     .contenedor__editar-producto form{
         position: relative;
     }
+
+    
+}
+
+#check{
+    position: relative;
+    right:10px;
+    bottom: -19px;
+}
+
+#descripcion {
+    width: 388px; 
+    height: 105px;
 }

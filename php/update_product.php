@@ -14,13 +14,15 @@
                 <h2>
                     Editar producto
                 </h2>
-                <input type="text" placeholder="nombre" name="nombre">
-                <input type="text" placeholder="cantidad" name="cantidad">
-                <input type="text" placeholder="descripcion" name="descripcion">
-                <input type="text" placeholder="precio" name="precio">
-                <input type="text" placeholder="imagen" name="imagen">
-                <input type="text" placeholder="habilitado" name="habilitado">
-                <button type="submit" name="Cambiar" value="Cambiar">
+                <input type="text" placeholder="nombre" name="nombre" >
+                <input type="number" placeholder="cantidad" name="cantidad">
+                <input type="number" placeholder="precio" name="precio">
+                <label placeholder="imagen"><input  type="file" name="imagen"></label>
+                <br></br>
+                <label><textarea placeholder="Descripcion del producto" id="descripcion"></textarea></label>
+                <label><input type="checkbox" name="habilitado" id="check">Habilitado</label>
+                <br></br>
+                <button type="submit" name="Cambiar" value="Cambiar" id="boton">
                     Actualizar
                 </button>   
             </form>
