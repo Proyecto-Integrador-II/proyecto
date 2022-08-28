@@ -45,13 +45,22 @@
     else if(isset($_POST['iniciar'])){
         session_start();
         if (!empty($_POST['correo']) && !empty($_POST['contrasena'])) {
-            $records = $conn->prepare('SELECT correo,contrasena FROM usuarios WHERE correo = :correo;');
+            $records = $conn->prepare('SELECT permisos_id,correo,contrasena FROM usuarios WHERE correo = :correo;');
             $records->bindParam(':correo', $_POST['correo']);
             $records->execute();
             $results = $records->fetch(PDO::FETCH_ASSOC);
             
             if (count($results) > 0 && password_verify($_POST['contrasena'], $results['contrasena'])) {
-                header("Location: Esqueleto.php");
+                if($results['permisos_id'] =1){
+                    header("Location: vendedores.php");
+
+                }
+                else if($results['permisos_id']=2){
+                    header("Location: Esqueleto.php");
+                }
+                else{
+                    echo "sin permiso";
+                }
             }
             
             else{
@@ -100,11 +109,8 @@
                     <h2>
                         Iniciar Sesión
                     </h2>
-                    <input type="text" placeholder="Correo Electronico" required >
-                    <input type="password" placeholder="Contraseña"required >
-                    <button>
-                    <input type="text" placeholder="Correo Electronico" name="correo">
-                    <input type="password" placeholder="Contraseña" name="contrasena">
+                    <input type="text" placeholder="Correo Electronico" name="correo" required>
+                    <input type="password" placeholder="Contraseña" name="contrasena" required>
                     <button type="submit" name="iniciar" value="iniciar">
                         Entrar
                     </button>

@@ -93,8 +93,8 @@ CREATE FUNCTION update_product(
     v_nombre        VARCHAR(255),
     v_descripcion   VARCHAR(10000),
     v_precio        DOUBLE,
-    v_imagen        LONGBLOB
-    v_habilitado    BOOLEAN,
+    v_imagen        LONGBLOB,
+    v_habilitado    BOOLEAN
     
 )
     RETURNS BOOLEAN
@@ -102,14 +102,14 @@ CREATE FUNCTION update_product(
     NOT DETERMINISTIC
 BEGIN
     SELECT id,
-           lugar_id
-           usuario_id
+           lugar_id,
+           usuario_id,
            cantidad,
            nombre,
            descripcion,
            precio,
-           imagen
-           habilitado,
+           imagen,
+           habilitado
            
     INTO @id_producto, @id_lugar, @id_usuario, @cantidad_producto, @nombre_producto, @descripcion_producto, @precio_producto, @imagen_producto,@habilitado_producto
     FROM inventario
@@ -118,12 +118,6 @@ BEGIN
         RETURN false;
     END IF;
     IF @id_lugar != v_lugar_id THEN
-        UPDATE
-            inventario
-        SET dependencia_id = v_dependencia_id
-        WHERE id = v_id;
-    END IF;
-    IF @id_usuario != v_usuario_id THEN
         UPDATE
             inventario
         SET lugar_id = v_lugar_id
