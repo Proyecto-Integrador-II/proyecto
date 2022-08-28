@@ -74,13 +74,97 @@ CREATE TABLE IF NOT EXISTS inventario
 (
     id             INT            NOT NULL PRIMARY KEY AUTO_INCREMENT,
     lugar_id       INT            NOT NULL,
-    usuario_id    INT            NOT NULL,
+    usuario_id     INT            NOT NULL,
     cantidad       INT            NOT NULL DEFAULT 0,
     nombre         VARCHAR(255)   NOT NULL,
     descripcion    VARCHAR(10000) NOT NULL,
     precio         DOUBLE         NOT NULL,
-    imagen         LONGBLOB,
-    habilitado     BOOLEAN      NOT NULL DEFAULT true,
+    imagen         LONGBLOB       NOT NULL,
+    habilitado     BOOLEAN        NOT NULL DEFAULT true,
     CONSTRAINT fk_id_lugares FOREIGN KEY (lugar_id) REFERENCES lugares (id),
     CONSTRAINT fk_id_usuarios FOREIGN KEY (usuario_id) REFERENCES usuarios (id)
 );
+
+CREATE FUNCTION update_product(
+    v_id            INT,
+    v_lugar_id      INT,
+    v_usuario_id    INT,
+    v_cantidad      INT,
+    v_nombre        VARCHAR(255),
+    v_descripcion   VARCHAR(10000),
+    v_precio        DOUBLE,
+    v_imagen        LONGBLOB
+    v_habilitado    BOOLEAN,
+    
+)
+    RETURNS BOOLEAN
+    LANGUAGE SQL
+    NOT DETERMINISTIC
+BEGIN
+    SELECT id,
+           lugar_id
+           usuario_id
+           cantidad,
+           nombre,
+           descripcion,
+           precio,
+           imagen
+           habilitado,
+           
+    INTO @id_producto, @id_lugar, @id_usuario, @cantidad_producto, @nombre_producto, @descripcion_producto, @precio_producto, @imagen_producto,@habilitado_producto
+    FROM inventario
+    WHERE id = v_id;
+    IF @id_producto IS NULL THEN
+        RETURN false;
+    END IF;
+    IF @id_lugar != v_lugar_id THEN
+        UPDATE
+            inventario
+        SET dependencia_id = v_dependencia_id
+        WHERE id = v_id;
+    END IF;
+    IF @id_usuario != v_usuario_id THEN
+        UPDATE
+            inventario
+        SET lugar_id = v_lugar_id
+        WHERE id = v_id;
+    END IF;
+    IF @cantidad_producto != v_cantidad THEN
+        UPDATE
+            inventario
+        SET cantidad = v_cantidad
+        WHERE id = v_id;
+    END IF;
+    IF @nombre_producto != v_nombre THEN
+        UPDATE
+            inventario
+        SET nombre = v_nombre
+        WHERE id = v_id;
+    END IF;
+    IF @descripcion_producto != v_descripcion THEN
+        UPDATE
+            inventario
+        SET descripcion = v_descripcion
+        WHERE id = v_id;
+    END IF;
+    IF @precio_producto != v_precio THEN
+        UPDATE
+            inventario
+        SET precio = v_precio
+        WHERE id = v_id;
+    END IF;
+    IF @imagen_producto != v_imagen THEN
+        UPDATE
+            inventario
+        SET imagen = v_imagen
+        WHERE id = v_id;
+    END IF;
+    IF @habilitado_producto != v_habilitado THEN
+        UPDATE
+            inventario
+        SET activo = v_activo
+        WHERE id = v_id;
+    END IF;
+    RETURN true;
+END;
+@@
