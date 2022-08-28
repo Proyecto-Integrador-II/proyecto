@@ -129,12 +129,14 @@ main{
     }
 }
 
-
 #contra{
     position: relative;
     top: -40px;
     color: #FF8000;
     border-radius: 2px;
+    left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 20px;
     left: 160px;
     font-family: Arial, Helvetica, sans-serif;
     top: -8px;
@@ -146,10 +148,16 @@ main{
 
 #pregunta{
     position: relative;
+    left: 10px;
     left: -150px;
     top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     
 }
 
-
+#enviar{
+    background-color:#FF8000;
+    padding: 10px 10px;
+    height: 40px;
+    border-radius: 2px;
+}

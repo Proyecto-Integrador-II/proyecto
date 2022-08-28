@@ -100,6 +100,9 @@
                     <h2>
                         Iniciar Sesión
                     </h2>
+                    <input type="text" placeholder="Correo Electronico" required >
+                    <input type="password" placeholder="Contraseña"required >
+                    <button>
                     <input type="text" placeholder="Correo Electronico" name="correo">
                     <input type="password" placeholder="Contraseña" name="contrasena">
                     <button type="submit" name="iniciar" value="iniciar">

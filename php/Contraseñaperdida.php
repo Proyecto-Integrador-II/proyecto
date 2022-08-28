@@ -20,6 +20,12 @@
                 </div>
             </div>
             <div class="contenedor__login-register">
+                <form name ="completo" action="correo.php" class="formulario__login" method="POST">
+                    <h2>
+                        Recuperar Contraseña
+                    </h2>
+                    <input type="email" name="email" placeholder="Correo Electronico" required>
+                    <input id="enviar" type="submit" name="enviar" placeholder="Enviar" >
                 <form action="" class="formulario__login">
                     <h2>
                         Recuperar Contraseña
@@ -40,6 +46,5 @@
             </div>
         </div>
     </main>
-
 </body>
 </html>
