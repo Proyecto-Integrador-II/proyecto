@@ -1,3 +1,14 @@
 <?php
-    $conexion = mysqli_connect("localhost:3307","root","upb2021","login_register_db");  
+
+$server = 'localhost:3307';
+$username = 'root';
+$password = 'upb2021';
+$database = 'proyectointegrador2';
+
+try {
+  $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
+} catch (PDOException $e) {
+  die('Connection Failed: ' . $e->getMessage());
+}
+
 ?>
