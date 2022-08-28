@@ -17,6 +17,7 @@
                     <li><a href="#">UPB</a></li>
                     <li><a href="#">Delacuesta</a></li>
                     <li><a href="#">Parque Caracoli</a>
+                    <li id="reseña" ><a href="comentarios.php">RESEÑAS-(Clientes)</a>
                     
         
                     <div class="search">
