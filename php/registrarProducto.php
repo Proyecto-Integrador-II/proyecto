@@ -23,9 +23,6 @@
 						<input type="text" id="name" placeholder="Nombre" required>
 					</div>
 					<div class="form-group">
-						<input type="text" id="category" placeholder="Categoría" required>
-					</div>
-					<div class="form-group">
 						<input type="number" id="stock" placeholder="Cantidad" required>
 					</div>
 					<div class="form-group">
