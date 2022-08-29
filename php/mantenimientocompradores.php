@@ -7,7 +7,7 @@ $correo=$_POST["correo"]
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['limpiardatos']))
 {
-    header("Location: principal.php");
+        header("Location: principal.php");
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['grabardatos']))
@@ -22,8 +22,7 @@ header("Location: principal.php");
 {
 echo "Error: " .$sql."<br>".mysqli_error($conn);
 }
-    
-    
+
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['modificardatos']))
@@ -38,8 +37,7 @@ header("Location: principal.php");
 {
 echo "Error: " .$sql."<br>".mysqli_error($conn);
 }
-    
-    
+
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['eliminardatos']))
@@ -54,8 +52,7 @@ header("Location: principal.php");
 {
 echo "Error: " .$sql."<br>".mysqli_error($conn);
 }
-    
-    
+
 }
 
 ?>
