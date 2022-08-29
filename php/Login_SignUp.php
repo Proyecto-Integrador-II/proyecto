@@ -19,7 +19,7 @@
                                                 $stmt->bindParam(':contrasena', $password);
                                                 if ($stmt->execute()) {
                                                     ?>
-                                                        <h1 class="bad">Comprador registrado con exito</h1>
+                                                        <h1 class="good">Comprador registrado con exito</h1>
                                                     <?php
                                                 } 
                                                 else {
@@ -50,7 +50,7 @@
                                             $stmt->bindParam(':contrasena', $_POST['contrasena']);
                                             if ($stmt->execute()) {
                                                 ?>
-                                                    <h1 class="bad">Vendedores registrado con exito</h1>
+                                                    <h1 class="good">Vendedores registrado con exito</h1>
                                                 <?php
                                         } 
                                             else {
