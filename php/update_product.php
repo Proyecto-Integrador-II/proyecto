@@ -40,7 +40,7 @@
             $_POST["nombre"],
             $_POST["descripcion"],
             $_POST["precio"],
-            $_POST["imagen"]
+            $_POST["imagen"],
             isset($_POST["habilitado"]),
         );
         if (!$succeed) {
