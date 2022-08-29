@@ -15,9 +15,8 @@
                     Editar Perfil Compradores
                 </h2>
                 <input type="text" placeholder="Nombre" name="Nombre" >
-                <input type="password" placeholder="Contraseña" name="Nombre" >
+                <input type="password" placeholder="Contraseña" name="Contraseña" >
                 <input type="email" placeholder="Correo" name="correo">
-                <label placeholder="Cambiar imagen"><input  type="file" name="imagen"></label>
                 <button type="submit" name="Cambiar" value="Cambiar" id="boton">
                     Actualizar
                 </button>   
@@ -26,3 +25,15 @@
     </main>
 </body>
 </html>
+
+
+<?php
+if(isset($_POST['cambiar'])){
+    if(!empty($_POST['Nombre'])){
+        UPDATE usuarios 
+
+
+
+    }
+}
+?>
