@@ -15,6 +15,7 @@
                     Editar Perfil Compradores
                 </h2>
                 <input type="text" placeholder="Nombre" name="Nombre" >
+                <input type="password" placeholder="Contraseña" name="Nombre" >
                 <input type="email" placeholder="Correo" name="correo">
                 <label placeholder="Cambiar imagen"><input  type="file" name="imagen"></label>
                 <button type="submit" name="Cambiar" value="Cambiar" id="boton">
