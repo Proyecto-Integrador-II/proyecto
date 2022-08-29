@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>star-rating</title>
+    <title>Reseña Vendedor</title>
     <style>
         *{
             margin: 0;
@@ -74,15 +74,15 @@
     </style>
 </head>
 <body>
-    <h1 class="rating_heading">5 Star Rating</h1>
+    <h1 class="rating_heading">Calificación de 5 estrellas</h1>
     <div class="star_rating">
-        <p> Cual es tu experiencia?</p>
+        <p> Cual es tu experiencia con este vendedor?</p>
         <button class="star">&#9734;</button>
         <button class="star">&#9734;</button>
         <button class="star">&#9734;</button>
         <button class="star">&#9734;</button>
         <button class="star">&#9734;</button>
-        <p class="current_rating">0 of 5</p>
+        <p class="current_rating">Califica de 1 a 5 estrellas</p>
     </div>
     <script>
         const allStars = document.querySelectorAll('.star');
@@ -90,7 +90,7 @@
         allStars.forEach((star, i)=>{
             star.onclick = function(){
                 let current_star_level = i + 1;
-                current_rating.innerText = `${current_star_level}of 5`;
+                current_rating.innerText = `${current_star_level} de 5 estrellas`;
                 allStars.forEach((star, j)=> {
                     if( current_star_level >= j+1) {
                         star.innerHTML = '&#9733';
