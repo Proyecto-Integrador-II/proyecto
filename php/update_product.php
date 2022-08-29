@@ -32,19 +32,37 @@
 </html>
 <?php
     include 'conexion.php';
-    if (isset($_POST["enabled"])) {
-        $succeed = $conn->update_product(
-            $_GET["id"],
-            $_POST["lugar_id"],
-            $_POST["cantidad"],
-            $_POST["nombre"],
-            $_POST["descripcion"],
-            $_POST["precio"],
-            $_POST["imagen"],
-            isset($_POST["habilitado"]),
-        );
-        if (!$succeed) {
-            echo "error";
+    if (isset($_POST["Cambiar"])) {
+        $file = fopen($_POST['image'], 'rb');
+        $sql = "UPDATE inventario SET lugar_id=:lugar_id,
+                                        usuario_id=:usuario_id,
+                                        cantidad =:cantidad,
+                                        nombre=:nombre,
+                                        descripcion =:descripcion.
+                                        precio=:precio,
+                                        imagen = $file,
+                                        habilitado = :habilitado;"
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':lugar_id', $_POST['lugar_id']);
+        $stmt->bindParam(':usuario_id', $_POST['usuario_id']);
+        $stmt->bindParam(':cantidad', $_POST['cantidad']);
+        $stmt->bindParam(':nombre', $_POST['nombre']);
+        $stmt->bindParam(':descripcion', $_POST['descripcion']);
+        $stmt->bindParam(':precio', $_POST['precio']);
+        $stmt->bindParam(':imagen',  $file, PDO::PARAM_BOOL);
+        $stmt->bindParam(':habilitado', $_POST['habilitado']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (count($result) !== 0) {
+            ?>
+                <h1 class="bad">Se registro el producto correctamente</h1>
+            <?php
+        }
+
+        else {
+            ?>
+                <h1 class="bad">Error, no se ha podido registrar el producto</h1>
+            <?php
         }
     }
 ?>
