@@ -24,9 +24,27 @@
                 <br></br>
                 <button type="submit" name="Cambiar" value="Cambiar" id="boton">
                     Actualizar
-                </button>   
+                </button>
             </form>
         </div>
     </main>
 </body>
 </html>
+<?php
+    include 'conexion.php';
+    if (isset($_POST["enabled"])) {
+        $succeed = $conn->update_product(
+            $_GET["id"],
+            $_POST["lugar_id"],
+            $_POST["cantidad"],
+            $_POST["nombre"],
+            $_POST["descripcion"],
+            $_POST["precio"],
+            $_POST["imagen"],
+            isset($_POST["habilitado"]),
+        );
+        if (!$succeed) {
+            echo "error";
+        }
+    }
+?>

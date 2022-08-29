@@ -1,65 +1,147 @@
 <?php
     include 'conexion.php';
     if(isset($_POST['registro'])){
-        if ($_POST['tipo'] == 'Compradores'){
-            if (!empty($_POST['nombre']) && !empty($_POST['correo']) && !empty($_POST['contrasena']) && !empty($_POST['repi_contrasena'])) {
-                $sql = "INSERT INTO usuarios (permisos_id,nombre,correo,contrasena) VALUES (2,:nombre,:correo,:contrasena)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':nombre', $_POST['nombre']);
-                $stmt->bindParam(':correo', $_POST['correo']);
-                $password = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
-                $stmt->bindParam(':contrasena', $password);
-                if ($stmt->execute()) {
-                    echo "Comprador registrado con exito";
-                } 
-                else {
-                    echo "Error, no se ha podido registrar el comprador";
+        if($_POST['contrasena'] === $_POST['repi_contrasena']){
+            if(strlen($_POST['contrasena']) >= 8){
+                if(filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL)){
+                    if(preg_match('@[A-Z]@', $_POST['contrasena'])){
+                        if(preg_match('@[a-z]@', $_POST['contrasena'])){
+                            if(preg_match('@[0-9]@', $_POST['contrasena'])){
+                                if(preg_match('@[^\w]@', $_POST['contrasena'])){
+                                    if ($_POST['tipo'] == 'Compradores'){
+                                        if (!empty($_POST['nombre']) && !empty($_POST['correo']) && !empty($_POST['contrasena']) && !empty($_POST['repi_contrasena'])) {
+                                            if($_POST['contrasena'] = $_POST['repi_contrasena']){
+                                                $sql = "INSERT INTO usuarios (permisos_id,nombre,correo,contrasena) VALUES (2,:nombre,:correo,:contrasena)";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->bindParam(':nombre', $_POST['nombre']);
+                                                $stmt->bindParam(':correo', $_POST['correo']);
+                                                $password = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
+                                                $stmt->bindParam(':contrasena', $password);
+                                                if ($stmt->execute()) {
+                                                    ?>
+                                                        <h1 class="bad">Comprador registrado con exito</h1>
+                                                    <?php
+                                                } 
+                                                else {
+                                                    ?>
+                                                        <h1 class="bad">Error, no se ha podido registrar el comprador</h1>
+                                                    <?php
+                                                }
+                                            }
+                                            else{
+                                                ?>
+                                                        <h1 class="bad">Error, no se ha podido registrar el comprador</h1>
+                                                <?php
+                                            }
+                                        }
+                                        else{
+                                            ?>
+                                                <h1 class="bad">Error, se debe llenar todos los campos</h1>
+                                            <?php
+                                        }
+                                    }
+                                    else if($_POST['tipo'] == "Vendedores"){
+                                        if (!empty($_POST['nombre']) && !empty($_POST['correo']) && !empty($_POST['contrasena']) && !empty($_POST['repi_contrasena'])) {
+                                            $sql = "INSERT INTO usuarios (permisos_id,nombre,correo,contrasena) VALUES (1,:nombre,:correo,:contrasena)";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->bindParam(':nombre', $_POST['nombre']);
+                                            $stmt->bindParam(':correo', $_POST['correo']);
+                                            $password = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
+                                            $stmt->bindParam(':contrasena', $_POST['contrasena']);
+                                            if ($stmt->execute()) {
+                                                ?>
+                                                    <h1 class="bad">Vendedores registrado con exito</h1>
+                                                <?php
+                                        } 
+                                            else {
+                                                ?>
+                                                    <h1 class="bad">Error, no se ha podido registrar el vendedores</h1>
+                                                <?php
+                                            }
+                                        }
+                                        else{
+                                            ?>
+                                                <h1 class="bad">Error, se debe llenar todos los campos"</h1>
+                                            <?php
+                                        }
+
+                                    }
+                                    else{
+                                        ?>
+                                            <h1 class="bad">No se selecciono ningun tipo</h1>
+                                        <?php
+                                    }
+                                }
+                                else{
+                                    ?>
+                                        <h1 class="bad">La contraseña debe tener un caracter especial</h1>
+                                    <?php
+                                }
+                            }
+                            else{
+                                ?>
+                                    <h1 class="bad">La contraseña debe tener un numero</h1>
+                                <?php
+                            }
+                        }
+                        else{
+                            ?>
+                                <h1 class="bad">La contraseña debe tener una minuscula</h1>
+                            <?php
+                        }
+                    }
+                    else{
+                        ?>
+                            <h1 class="bad">La contraseña debe tener una mayuscula</h1>
+                        <?php
+
+                    }
                 }
-            }
-            else{
-                echo "Error, se debe llenar todos los campos";
+                else{
+                    ?>
+                        <h1 class="bad">Correo no valido</h1>
+                    <?php
+                }
+            }else{
+                ?>
+                    <h1 class="bad">La contraseña es muy corta</h1>
+                <?php
             }
         }
-        else if($_POST['tipo'] == "Vendedores"){
-            if (!empty($_POST['nombre']) && !empty($_POST['correo']) && !empty($_POST['contrasena']) && !empty($_POST['repi_contrasena'])) {
-                $sql = "INSERT INTO usuarios (permisos_id,nombre,correo,contrasena) VALUES (1,:nombre,:correo,:contrasena)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':nombre', $_POST['nombre']);
-                $stmt->bindParam(':correo', $_POST['correo']);
-                $password = password_hash($_POST['contrasena'], PASSWORD_BCRYPT);
-                $stmt->bindParam(':contrasena', $_POST['contrasena']);
-                if ($stmt->execute()) {
-                    echo "Vendedores registrado con exito";
-                } 
-                else {
-                    echo "Error, no se ha podido registrar el vendedores";
-                }
-            }
-            else{
-                echo "Error, se debe llenar todos los campos";
-            }
-
+        else{
+            ?>
+                <h1 class="bad">Las contraseñas no coinciden</h1>
+            <?php
         }
     }
 
     else if(isset($_POST['iniciar'])){
         session_start();
         if (!empty($_POST['correo']) && !empty($_POST['contrasena'])) {
-            $records = $conn->prepare('SELECT correo,contrasena FROM usuarios WHERE correo = :correo;');
+            $records = $conn->prepare('SELECT permisos_id,correo,contrasena FROM usuarios WHERE correo = :correo;');
             $records->bindParam(':correo', $_POST['correo']);
             $records->execute();
             $results = $records->fetch(PDO::FETCH_ASSOC);
             
             if (count($results) > 0 && password_verify($_POST['contrasena'], $results['contrasena'])) {
-                header("Location: Esqueleto.php");
+                if($results['permisos_id'] =1){
+                    header("Location: vendedores.php");
+
+                }
+                else if($results['permisos_id']=2){
+                    header("Location: Esqueleto.php");
+                }
             }
-            
             else{
-                echo 'Credenciales invalidas';
+                ?>
+                    <h1 class="bad">Credenciales invalidas</h1>
+                <?php
             }
         }
         else{
-            echo "Error, se deben llenar todos los campos";
+            ?>
+                <h1 class="bad">Error, se deben llenar todos los campos</h1>
+            <?php
         }
     }
 ?>
@@ -100,10 +182,7 @@
                     <h2>
                         Iniciar Sesión
                     </h2>
-                    <input type="text" placeholder="Correo Electronico" required >
-                    <input type="password" placeholder="Contraseña"required >
-                    <button>
-                    <input type="text" placeholder="Correo Electronico" name="correo">
+                    <input type="text" placeholder="Correo Electronico" name="correo" ID="correo_login">
                     <input type="password" placeholder="Contraseña" name="contrasena">
                     <button type="submit" name="iniciar" value="iniciar">
                         Entrar
@@ -117,7 +196,7 @@
                         Regístrarse
                     </h2>
                     <input type="text" placeholder="Nombre completo" name="nombre" id="nombre">
-                    <input type="text" placeholder="Correo Electronico" name="correo" id="correo">
+                    <input type="text" placeholder="Correo Electronico" name="correo" id="correo_login">
                     <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena">
                     <input type="password" placeholder="Repita contraseña" name="repi_contrasena" id="repi_contrasena">
                     <input type="radio" name="tipo" value="Compradores">Compradores
