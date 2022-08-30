@@ -2,7 +2,7 @@
 
 $server = 'localhost:3307';
 $username = 'root';
-$password = '';
+$password = 'upb2021';
 $database = 'proyectointegrador2';
 
 try {

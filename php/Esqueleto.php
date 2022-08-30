@@ -5,10 +5,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../CSS/Diseño.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
     </head>
+    
     <body>
+    <?php
+                    include 'conexion.php';
+                    $sql = "SELECT permisos_id,nombre,correo,habilitado FROM `usuarios`";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+                    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+                    echo implode(" ", ["<script>function alerta(){Swal.fire('",$results['nombre'],'\n',$results['correo'],"')}</script>"]);
+                ?>
         <div class="grid-container">
             <div class="item1">
+            <div class="usuario" style="position: absolute;transform: translate(100%, 180%)">
+                <a onclick="alerta()">Usuario</a-->
+                </div>
                 <h1>UPB FOOD</h1>
             </div>
             <div class="item3">
@@ -70,7 +83,7 @@
                         </p>
 
                     </div>
-                </div>  
+                </div>
         </div>
         <script src="busqueda.js"> </script>
     </body>

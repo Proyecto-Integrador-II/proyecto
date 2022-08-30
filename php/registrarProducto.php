@@ -25,16 +25,16 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<input type="text" id="name" placeholder="Nombre" required>
+						<input type="text" name="name" placeholder="Nombre" required>
 					</div>
 					<div class="form-group">
-						<input type="number" id="stock" placeholder="Cantidad" required>
+						<input type="number" name="stock" placeholder="Cantidad" required>
 					</div>
 					<div class="form-group">
-						<input type="text" id="price" placeholder="Precio" required>
+						<input type="text" name="price" placeholder="Precio" required>
 					</div>
 					<div class="form-group">
-						<input type="text" id="description" placeholder="Descripción" required>
+						<input type="text" name="description" placeholder="Descripción" required>
 					</div>
 					<br>
 					<div class="form-group">
