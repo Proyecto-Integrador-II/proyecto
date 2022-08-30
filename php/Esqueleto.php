@@ -18,13 +18,12 @@
             echo implode(" ", ["<script>function alerta(){Swal.fire('",$results['nombre'],'\n',$results['correo'],"')}</script>"]);
         ?>
         <div class="grid-container">
-            <div class="item1">
-            <div class="usuario" style="position:absolute;top:10%;left:5%;height:41;width:350px;overflow:hidden;">
+            <div class="usuario" style="position:absolute;top: 6%; left:5% ;width:350px;overflow:hidden;">
                 <a onclick="alerta()">
                 <img src="../Fotos/usuario.png" alt="usuario" width="40" height="40">
                 Usuario
                 </a>
-                <div class="usuario_foto" style="position: absolute; background-color: White; border-style: solid; margin-top: 10px; left:0%; width:300px;">
+                <div class="usuario_foto" style="position: absolute; background-color: White; border-style: solid; margin-top: 20px; left:0%; width:300px;">
                     <img src="../Fotos/usuario.png" alt="usuario" width="100" height="100">
                     <br>
                     <?php
@@ -39,8 +38,7 @@
                     <br>
                 </div>
             </div>
-                <a onclick="alerta()">Usuario</a-->
-                </div>
+            <div class="item1">
                 <h1>UPB FOOD</h1>
             </div>
             <div class="item3">
