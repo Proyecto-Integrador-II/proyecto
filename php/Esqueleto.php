@@ -19,7 +19,26 @@
         ?>
         <div class="grid-container">
             <div class="item1">
-            <div class="usuario" style="position: absolute;transform: translate(100%, 180%)">
+            <div class="usuario" style="position:absolute;top:10%;left:5%;height:41;width:350px;overflow:hidden;">
+                <a onclick="alerta()">
+                <img src="../Fotos/usuario.png" alt="usuario" width="40" height="40">
+                Usuario
+                </a>
+                <div class="usuario_foto" style="position: absolute; background-color: White; border-style: solid; margin-top: 10px; left:0%; width:300px;">
+                    <img src="../Fotos/usuario.png" alt="usuario" width="100" height="100">
+                    <br>
+                    <?php
+                    include 'conexion.php';
+                    $sql = "SELECT permisos_id,nombre,correo,habilitado FROM `usuarios`";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+                    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+                    echo implode(" ", [$results['nombre'],"<br>",$results['correo']]);
+                    ?>
+                    <br>
+                    <br>
+                </div>
+            </div>
                 <a onclick="alerta()">Usuario</a-->
                 </div>
                 <h1>UPB FOOD</h1>
