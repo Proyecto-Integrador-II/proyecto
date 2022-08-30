@@ -4,8 +4,8 @@ include("conexion.php");
 
 if(isset($_POST['save'])){
    
-    $sql = "INSERT INTO inventario (nombre, cantidad, descripcion, precio) 
-            VALUES (:name,:stock,:description,:price,)";
+    $sql = "INSERT INTO inventario (lugar_id,vendedor_id,cantidad,nombre, descripcion, precio) 
+            VALUES (1,1,3,'empanada','son feas',22)";
 
     $stmt = $conn->prepare($sql);
 

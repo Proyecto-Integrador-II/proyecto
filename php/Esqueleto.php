@@ -9,14 +9,14 @@
     </head>
     
     <body>
-    <?php
-                    include 'conexion.php';
-                    $sql = "SELECT permisos_id,nombre,correo,habilitado FROM `usuarios`";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $results = $stmt->fetch(PDO::FETCH_ASSOC);
-                    echo implode(" ", ["<script>function alerta(){Swal.fire('",$results['nombre'],'\n',$results['correo'],"')}</script>"]);
-                ?>
+        <?php
+            include 'conexion.php';
+            $sql = "SELECT permisos_id,nombre,correo,habilitado FROM `usuarios`";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo implode(" ", ["<script>function alerta(){Swal.fire('",$results['nombre'],'\n',$results['correo'],"')}</script>"]);
+        ?>
         <div class="grid-container">
             <div class="item1">
             <div class="usuario" style="position: absolute;transform: translate(100%, 180%)">
