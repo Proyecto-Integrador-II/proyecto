@@ -14,37 +14,34 @@
                 <h2>
                     Editar Perfil Compradores
                 </h2>
-                <input type="text" placeholder="Nombre" name="Nombre" >
-                <input type="password" placeholder="Contraseña" name="Contraseña" >
+                <input type="text" placeholder="Nombre" name="nombre" >
+                <input type="password" placeholder="Contraseña" name="contraseña" >
                 <input type="email" placeholder="Correo" name="correo">
-                <button type="submit" name="limpiardatos" value="Cambiar" id="boton">
-                    Limpiar
-                </button>   
                 <button type="submit" name="grabardatos" value="Cambiar" id="boton">
                     Grabar
                 </button> 
                 <button type="submit" name="modificardatos" value="Cambiar" id="boton">
                     Modificar
                 </button> 
-                <button type="submit" name="eliminardatos" value="Cambiar" id="boton">
-                    Eliminar
-                </button> 
             </form>
         </div>
 <?php 
-$sql="SELECT * FROM usuarios";
-$result=mysql_query($conn,$sql);
+include 'conexion.php';
+if(isset($_POST['modificardatos'])){
 
-while($mostrar=mysql_fetch_array($result))
-{
-?>
-<tr> <td><?php echo $mostrar['codigo'] ?>
-	<td><?php echo $mostrar['nombre'] ?>
-	<td><?php echo $mostrar['edad'] ?>
-	<td><?php echo $mostrar['telefono'] ?>
+    $sql= $conn->prepare("UPDATE usuarios set nombre =:nombre, contrasena=:contrasena, correo=:correo;");
+    $sql->bindParam(':nombre', $_POST['nombre']);
+    $sql->bindParam(':contrasena', $_POST['contrasena']);
+    $sql->bindParam(':correo', $_POST['correo']);
+    $sql->execute();
+    $results = $sql->fetch(PDO::FETCH_ASSOC);
 
-</tr>
-<?php
+    if($results)
+    {
+        echo 'entro';
+    }else{
+        echo 'no entra';
+    }
 }
 
 ?>

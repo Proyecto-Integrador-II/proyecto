@@ -66,3 +66,19 @@ main{
         position: relative;
     }
 }
+
+.bad {
+	text-align: center;
+	width: 100%;
+	padding: 12px;
+	background-color: #a22;
+	color: #fff
+}
+
+.good {
+	text-align: center;
+	width: 100%;
+	padding: 12px;
+	background-color: #088400;
+	color: #fff
+}

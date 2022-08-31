@@ -41,7 +41,7 @@
                                         descripcion =:descripcion.
                                         precio=:precio,
                                         imagen = $file,
-                                        habilitado = :habilitado;"
+                                        habilitado = :habilitado";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':lugar_id', $_POST['lugar_id']);
         $stmt->bindParam(':usuario_id', $_POST['usuario_id']);
