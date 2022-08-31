@@ -20,9 +20,6 @@
                 <button type="submit" name="grabardatos" value="Cambiar" id="boton">
                     Grabar
                 </button> 
-                <button type="submit" name="modificardatos" value="Cambiar" id="boton">
-                    Modificar
-                </button> 
             </form>
         </div>
 <?php 
