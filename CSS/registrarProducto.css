@@ -84,8 +84,9 @@ main{
 }
 
 .container select{
-    background-color: gray;
-    color: #fff;
+    background-color: #f2f2f2 !important;
+    color: #757575 !important;
+    width: 361px;
     font-size: inherit;
     padding: .5em;
     padding-right: 2.5em; 
