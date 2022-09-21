@@ -1,164 +1,135 @@
-SET GLOBAL log_bin_trust_function_creators = 1;
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:3307
+-- Tiempo de generación: 21-09-2022 a las 04:29:33
+-- Versión del servidor: 10.6.7-MariaDB
+-- Versión de PHP: 8.1.1
 
-CREATE TABLE IF NOT EXISTS permisos
-(
-    id     INT         NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(45) NOT NULL,
-    CONSTRAINT permisos_nombre_unico UNIQUE (nombre)
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-INSERT INTO permisos (nombre)
-VALUES ('VENDEDORES'),
-       ('COMPRADORES'),
-       ('ADMINISTRADORES');
 
-DELIMITER @@
-CREATE FUNCTION get_permisos_id(nombre_permiso VARCHAR(45)) RETURNS INT
-BEGIN
-    SELECT id INTO @resultado FROM permisos WHERE nombre = nombre_permiso LIMIT 1;
-    RETURN @resultado;
-END;
-@@
-DELIMITER ;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- Se crea la tabla usuarios con los respectivos datos personales --
-CREATE TABLE IF NOT EXISTS usuarios
-(
-    id              INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    permisos_id     INT          NOT NULL,
-    nombre          VARCHAR(100) NOT NULL,
-    correo          VARCHAR(200) NOT NULL,
-    contrasena      VARCHAR(500) NOT NULL,
-    habilitado      BOOLEAN      NOT NULL DEFAULT true,
-    CONSTRAINT usuarios_correo_unique UNIQUE (correo),
-    CONSTRAINT fk_permisos_vendedores_permisos_id FOREIGN KEY (permisos_id) REFERENCES permisos (id)
-);
+--
+-- Base de datos: `proyecto2`
+--
 
-CREATE TABLE IF NOT EXISTS lugares
-(
-    id     INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(255) NOT NULL,
-    CONSTRAINT nombre_unique UNIQUE (nombre)
-);
+-- --------------------------------------------------------
 
-INSERT INTO lugares (nombre)
-VALUES ('UPB'),
-       ('Delacuesta'),
-       ('Parque caracoli');
+--
+-- Estructura de tabla para la tabla `producto`
+--
 
-DELIMITER @@
-CREATE FUNCTION get_lugares_name(v_id_lugares INT)
-    RETURNS VARCHAR(255)
-    LANGUAGE SQL
-    NOT DETERMINISTIC
-BEGIN
-    SELECT nombre INTO @result FROM lugares WHERE id = v_id_lugares;
-    return @result;
-END;
-@@
+CREATE TABLE `producto` (
+  `codproducto` int(11) NOT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
+  `proveedor` int(11) DEFAULT NULL,
+  `precio` decimal(10,2) DEFAULT NULL,
+  `existencia` int(11) DEFAULT NULL,
+  `foto` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE FUNCTION get_lugares_id(v_nombre_lugares VARCHAR(255))
-    RETURNS INT
-    LANGUAGE SQL
-    NOT DETERMINISTIC
-BEGIN
-    SELECT id INTO @result FROM lugares WHERE nombre = v_nombre_lugares;
-    return @result;
-END;
-@@
+-- --------------------------------------------------------
 
-DELIMITER ;
+--
+-- Estructura de tabla para la tabla `rol`
+--
 
--- -- Inventario -- --
-CREATE TABLE IF NOT EXISTS inventario
-(
-    id             INT            NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    lugar_id       INT            NOT NULL,
-    usuario_id     INT            NOT NULL,
-    cantidad       INT            NOT NULL DEFAULT 0,
-    nombre         VARCHAR(255)   NOT NULL,
-    descripcion    VARCHAR(10000) NOT NULL,
-    precio         DOUBLE         NOT NULL,
-    imagen         LONGBLOB       NOT NULL,
-    habilitado     BOOLEAN        NOT NULL DEFAULT true,
-    CONSTRAINT fk_id_lugares FOREIGN KEY (lugar_id) REFERENCES lugares (id),
-    CONSTRAINT fk_id_usuarios FOREIGN KEY (usuario_id) REFERENCES usuarios (id)
-);
+CREATE TABLE `rol` (
+  `idrol` int(11) NOT NULL,
+  `rol` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE FUNCTION update_product(
-    v_id            INT,
-    v_lugar_id      INT,
-    v_usuario_id    INT,
-    v_cantidad      INT,
-    v_nombre        VARCHAR(255),
-    v_descripcion   VARCHAR(10000),
-    v_precio        DOUBLE,
-    v_imagen        LONGBLOB,
-    v_habilitado    BOOLEAN
-    
-)
-    RETURNS BOOLEAN
-    LANGUAGE SQL
-    NOT DETERMINISTIC
-BEGIN
-    SELECT id,
-           lugar_id,
-           usuario_id,
-           cantidad,
-           nombre,
-           descripcion,
-           precio,
-           imagen,
-           habilitado
-           
-    INTO @id_producto, @id_lugar, @id_usuario, @cantidad_producto, @nombre_producto, @descripcion_producto, @precio_producto, @imagen_producto,@habilitado_producto
-    FROM inventario
-    WHERE id = v_id;
-    IF @id_producto IS NULL THEN
-        RETURN false;
-    END IF;
-    IF @id_lugar != v_lugar_id THEN
-        UPDATE
-            inventario
-        SET lugar_id = v_lugar_id
-        WHERE id = v_id;
-    END IF;
-    IF @cantidad_producto != v_cantidad THEN
-        UPDATE
-            inventario
-        SET cantidad = v_cantidad
-        WHERE id = v_id;
-    END IF;
-    IF @nombre_producto != v_nombre THEN
-        UPDATE
-            inventario
-        SET nombre = v_nombre
-        WHERE id = v_id;
-    END IF;
-    IF @descripcion_producto != v_descripcion THEN
-        UPDATE
-            inventario
-        SET descripcion = v_descripcion
-        WHERE id = v_id;
-    END IF;
-    IF @precio_producto != v_precio THEN
-        UPDATE
-            inventario
-        SET precio = v_precio
-        WHERE id = v_id;
-    END IF;
-    IF @imagen_producto != v_imagen THEN
-        UPDATE
-            inventario
-        SET imagen = v_imagen
-        WHERE id = v_id;
-    END IF;
-    IF @habilitado_producto != v_habilitado THEN
-        UPDATE
-            inventario
-        SET activo = v_activo
-        WHERE id = v_id;
-    END IF;
-    RETURN true;
-END;
-@@
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idrol`, `rol`) VALUES
+(1, 'Administradores'),
+(2, 'Vendedores'),
+(3, 'Compradores');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellido` varchar(50) DEFAULT NULL,
+  `correo` varchar(100) DEFAULT NULL,
+  `clave` varchar(100) DEFAULT NULL,
+  `rol` int(11) DEFAULT NULL,
+  `habilitado` tinyint(1) NOT NULL DEFAULT 1,
+  `calificacion` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`codproducto`),
+  ADD KEY `proveedor` (`proveedor`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`idrol`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idusuario`),
+  ADD KEY `rol` (`rol`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`proveedor`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
