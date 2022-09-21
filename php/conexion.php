@@ -10,5 +10,3 @@
         echo "Error en la conexión";
     }
 ?>
-
-

@@ -15,13 +15,14 @@
 				<div class="header">						
 					<h2 class="title">Añadir Producto</h2>
 				</div>
-				<div class="formulario">
-					<div class="form-group">
-						<label>Lugar de venta</label>  
-						<select id="place">
+					<div>
+						<select name="lugar" required>
+							<option value=""
+									hidden
+							>Lugar de venta</option>
 							<option value="1">UPB</option>
 							<option value="2">Parque Caracolí</option>
-							<option value="3">Delacuesta C.C.</option>
+							<option value="2">Delacuesta C.C.</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -34,16 +35,22 @@
 						<input type="text" name="price" placeholder="Precio" required>
 					</div>
 					<div class="form-group">
+						<label placeholder="imagen"><input  type="file" name="image"></label>
+					</div>
+					<div class="form-group">
 						<input type="text" name="description" placeholder="Descripción" required>
 					</div>
 					<br>
-					<div class="form-group">
-						<label>Habilitado</label>  
-						<select id="enable">
+					<div>
+						<select name="enable" required>
+							<option value=""
+									hidden
+							>Habilitado</option>
 							<option value="1">Si</option>
 							<option value="2">No</option>
 						</select>
 					</div>
+
 					<div class="modal-footer">
 					<input type="button" name="cancel" class="cancelar" value="Cancelar">
 					<input type="submit" name="save" class="registrar" value="Guardar datos">

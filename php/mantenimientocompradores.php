@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['limpiardatos']))
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['grabardatos']))
 
 {
-$sqlgrabar = "INSERT INTO clientes(codigo, nombre, contraseña, correo) values ('$nombre','$contraseña','$correo')";
+$sqlgrabar = "INSERT INTO usuarios(codigo, nombre, contraseña, correo) values ('$nombre','$contraseña','$correo')";
 
 if(mysqli_query($conn,$sqlgrabar))
 {
@@ -28,7 +28,7 @@ echo "Error: " .$sql."<br>".mysqli_error($conn);
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['modificardatos']))
 
 {
-        $sqlmodificar = "UPDATE clientes SET nombre='$nombre',contraseña=''$contraseña'',correo='$correo' WHERE codigo=$cod";
+        $sqlmodificar = "UPDATE usuarios SET nombre='$nombre',contraseña=''$contraseña'',correo='$correo' WHERE codigo=$cod";
 
 if(mysqli_query($conn,$sqlmodificar))
 {
@@ -40,19 +40,7 @@ echo "Error: " .$sql."<br>".mysqli_error($conn);
 
 }
 
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['eliminardatos']))
 
-{
-        $sqleliminar = "DELETE FROM clientes WHERE codigo=$cod";
 
-if(mysqli_query($conn,$sqleliminar))
-{
-header("Location: principal.php");
-}else 
-{
-echo "Error: " .$sql."<br>".mysqli_error($conn);
-}
-
-}
 
 ?>
