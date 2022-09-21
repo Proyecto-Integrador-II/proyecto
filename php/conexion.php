@@ -1,16 +1,14 @@
 <?php
+    $host = 'localhost:3307';
+    $user = 'root';
+    $password = 'upb2021';
+    $db = 'proyecto2';
 
-$server = 'localhost:3307';
-$username = 'root';
-$password = 'upb2021';
-$database = 'proyectointegrador2';
+    $conection = @mysqli_connect($host,$user,$password,$db);
 
-try {
-  $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
-} catch (PDOException $e) {
-  die('Connection Failed: ' . $e->getMessage());
-}
-
+    if(!$conection){
+        echo "Error en la conexión";
+    }
 ?>
 
 
