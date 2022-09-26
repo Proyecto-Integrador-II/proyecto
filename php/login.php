@@ -83,17 +83,17 @@
     if(!empty($_SESSION['active']))
     {
 		echo 'esta active';
-		if($_SESSION['user'] ===1)
+		if($_SESSION['user'] ==1)
 		{
-			header('location:./index.html');
+			header('location: lista_usuarios.php');
 		}
-		else if($_SESSION['user'] ===2)
+		else if($_SESSION['user'] ==2)
 		{
-			header('location:./index.html');
+			header('location: añadir_productos.php');
 		}
-		else if($_SESSION['user'] ===3)
+		else if($_SESSION['user'] ==3)
 		{
-			header('location:./index.html');
+			header('location: Esqueleto.php');
 		}
         
     }
@@ -117,17 +117,17 @@
 				$_SESSION['idUser'] = $data['idusuario'];
 				$_SESSION['nombre'] = $data['nombre'];
 				$_SESSION['apellido'] = $data['apellido'];
-				$_SESSION['email'] = $data['email'];
+				$_SESSION['email'] = $data['correo'];
 				$_SESSION['user'] = $data['rol'];
 
-				if($data['rol'] === 1){
-					echo '1';
+				if($data['rol'] ==1){
+					header('location: lista_usuarios.php');
 				}
-				else if($data['rol'] ===2){
-					echo '2';
+				else if($data['rol'] ==2){
+					header('location: añadir_productos.php');
 				}
-				else if($data['rol'] ===3){
-					echo '3';
+				else if($data['rol'] ==3){
+					header('location: Esqueleto.php');
 				}
 			}
 			else
