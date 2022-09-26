@@ -10,12 +10,15 @@
     
     <body>
         <?php
+            session_start();
             include 'conexion.php';
-            $sql = "SELECT permisos_id,nombre,correo,habilitado FROM `usuarios`";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $results = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo implode(" ", ["<script>function alerta(){Swal.fire('",$results['nombre'],'\n',$results['correo'],"')}</script>"]);
+            $usuario_id = $_SESSION['idUser'];
+            $query = mysqli_query($conection, "SELECT * FROM `usuario` where idusuario = $usuario_id");
+            $result = mysqli_fetch_array($query);
+                if($result > 0)
+                {
+                    echo implode(" ", ["<script>function alerta(){Swal.fire('",$result['nombre'],'\n',$result['correo'],"')}</script>"]);
+                }
         ?>
         <div class="grid-container">
             <div class="usuario" style="position:absolute;top: 6%; left:5% ;width:350px;overflow:hidden;">
@@ -27,12 +30,13 @@
                     <img src="../Fotos/usuario.png" alt="usuario" width="100" height="100">
                     <br>
                     <?php
-                    include 'conexion.php';
-                    $sql = "SELECT permisos_id,nombre,correo,habilitado FROM `usuarios`";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $results = $stmt->fetch(PDO::FETCH_ASSOC);
-                    echo implode(" ", [$results['nombre'],"<br>",$results['correo']]);
+                    
+                    $query = mysqli_query($conection, "SELECT * FROM `usuario` where idusuario = $usuario_id");
+                    $result = mysqli_fetch_array($query);
+                        if($result > 0)
+                        {
+                            echo implode(" ", [$result['nombre'],"<br>",$result['correo']]);
+                        }
                     ?>
                     <br>
                     <br>
