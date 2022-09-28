@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../assets/css/style.css" />
+		<link rel="stylesheet" href="../css/style.css" />
 		<title></title>
 	</head>
 	<body>
@@ -172,7 +172,7 @@
 				</p>
 			</form>
 		</div>
-		<script src="../assets/javascript/dom.js" type="module"></script>
-		<script src="../assets/javascript/validations/signup.js"></script>
+		<script src="../javascript/dom.js" type="module"></script>
+		<script src="../javascript/validations/signup.js"></script>
 	</body>
 </html>
