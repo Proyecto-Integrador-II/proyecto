@@ -21,12 +21,6 @@
 							id="email"
 							placeholder="Email"
 						/>
-
-						<img
-							src="../assets/icons/mail.svg"
-							alt="Mail icon"
-							class="form-card__input-icon"
-						/>
 					</div>
 
 					<p class="form-card__error">
@@ -43,12 +37,6 @@
 							name="password"
 							id="password"
 							placeholder="Contraseña"
-						/>
-
-						<img
-							src="../assets/icons/lock-black.svg"
-							alt="Mail icon"
-							class="form-card__input-icon"
 						/>
 					</div>
 
