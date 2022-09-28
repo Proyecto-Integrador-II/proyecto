@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<form class="form-card" method="POST">
+			<form class="form-card" enctype="multipart/form-data" method="POST">
 				<h2 class="form-card__subtitle">Añade un producto</h2>
 
 				<div class="form-card__group">
@@ -72,6 +72,8 @@
 </html>
 <?php
 	require_once 'conexion.php';
+	session_start();
+	
 
 	if(!empty($_POST))
 	{
@@ -107,7 +109,7 @@
 				$imgProducto = 'img_'.$nombre_producto.'.png';
 				$src = $destino.$imgProducto;
 			}
-			$query_insert = mysqli_query($conection,"INSERT INTO producto(codproducto,nombre,precio,lugar,descripcion,foto,proveedor) VALUES ('$nombre_producto','$precio_producto','$lugar_producto','$descripcion_producto','$imgProducto','$usuario_id)");	
+			$query_insert = mysqli_query($conection,"INSERT INTO producto(nombre,precio,lugar,descripcion,foto,proveedor) VALUES ('$nombre_producto','$precio_producto','$lugar_producto','$descripcion_producto','$imgProducto','$usuario_id')");	
 			
 			if($query_insert)
             {
