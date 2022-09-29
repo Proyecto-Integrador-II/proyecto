@@ -8,11 +8,16 @@
 		<title>Editar productos</title>
 	</head>
 	<body>
-	<?php include '../includes/header.php' ?>
-
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
 		<div class="container">
 			<form class="form-card" id="signup-form" method="POST">
-				<h2 class="form-card__subtitle">Actualizar cuenta</h2>
+				<h1 class="form-card__subtitle fas fa-cubes"><i class="fas fa-cubes"></i>Actualizar cuenta</h1>
                 <?php
 				require_once '../todos/conexion.php';
 				if(!empty($_POST))
@@ -98,9 +103,6 @@
 						placeholder="Nombres"
                         value="<?php echo $nombre;?>"
 					/>
-					<p class="form-card__error">
-						Los nombres solo puede contener de 5 a 40 letras.
-					</p>
 				</div>
 
 				<div class="form-card__group">
