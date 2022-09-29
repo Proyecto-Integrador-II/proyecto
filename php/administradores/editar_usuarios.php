@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php include '../includes/scripts.php' ?>
 		<title>Editar usuarios</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<title>Editar usuarios</title>
 	</head>
 	<body>
 	<?php include '../includes/header.php' ?>
@@ -172,7 +174,7 @@
 				</p>
 			</form>
 		</div>
-		<script src="../assets/javascript/dom.js" type="module"></script>
-		<script src="../assets/javascript/validations/signup.js"></script>
+		<script src="../javascript/dom.js" type="module"></script>
+		<script src="../javascript/validations/signup.js"></script>
 	</body>
 </html>

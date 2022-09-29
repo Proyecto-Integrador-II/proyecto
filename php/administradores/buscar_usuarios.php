@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php include '../includes/scripts.php' ?>
 		<title>Buscar usuarios</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<title></title>
 	</head>
 	<body>      
 	<?php include '../includes/header.php' ?>  
