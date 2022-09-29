@@ -5,11 +5,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php include '../includes/scripts.php' ?>
-		<link rel="stylesheet" href="../css/style.css" />
 		<title>Eliminar usuarios</title>
 	</head>
 	<body>
-    <?php include '../includes/header.php' ?>
+        <?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
 
         <div class="container">
             <h2>¿Esta seguro de eliminar el siguiente usuario?</h2>
