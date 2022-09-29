@@ -8,10 +8,16 @@
 		<title>Eliminar productos</title>
 	</head>
 	<body>
-    <?php include '../includes/header.php' ?>
+        <?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
 
         <div class="container">
-            <h2>¿Esta seguro de eliminar el siguiente usuario?</h2>
+            <h2>¿Esta seguro de eliminar el siguiente producto?</h2>
         <?php
 				require_once '../todos/conexion.php';
             
@@ -27,11 +33,8 @@
                         $apellido = $data['apellido'];
                         $rol = $data['rol'];
                     }
-                    if(empty($_REQUEST['id']) || $rol== 'Administradores'){
-                        header("Location:./lista_usuarios.php");
-                    }
                 }else{
-                    header("Location:./lista_usuarios.php");
+                    header("Location:./lista_productos.php");
                 }
             
         ?>
