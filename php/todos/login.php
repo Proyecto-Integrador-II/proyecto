@@ -5,11 +5,11 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../CSS/style.css" />
+		<?php include '../includes/scripts.php' ?>
 		<title>Login</title>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="container">
 			<form class="form-card" id="login-form" ACTION="./login.php" METHOD="POST">
 				<div class="form-card__group">
 					<label class="form-card__label" for="email">Email:</label>
@@ -72,15 +72,15 @@
     {
 		if($_SESSION['user'] ==1)
 		{
-			echo 'holaa';
+			header('location: ../administradores/index.php');
 		}
 		else if($_SESSION['user'] ==2)
 		{
-			header('location: añadir_productos.php');
+			header('location: ../vendedores/index.php');
 		}
 		else if($_SESSION['user'] ==3)
 		{
-			header('location: Esqueleto.php');
+			header('location: ../compradores/index.php');
 		}
         
     }
@@ -108,13 +108,13 @@
 				$_SESSION['user'] = $data['rol'];
 
 				if($data['rol'] ==1){
-					header('location: ../administradores/lista_usuarios.php');
+					header('location: ../administradores/index.php');
 				}
 				else if($data['rol'] ==2){
-					header('location: ../vendedores/añadir_productos.php');
+					header('location: ../vendedores/index.php');
 				}
 				else if($data['rol'] ==3){
-					header('location: ../compradores/Esqueleto.php');
+					header('location: ../compradores/index.php');
 				}
 			}
 			else
