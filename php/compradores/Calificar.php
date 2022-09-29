@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include '../includes/scripts.php' ?>
     <title>Reseña Vendedor</title>
     <style>
         *{
@@ -74,6 +75,13 @@
     </style>
 </head>
 <body>
+    <?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+	?>
     <h1 class="rating_heading">Calificación de 5 estrellas</h1>
     <div class="star_rating">
         <p> Cual es tu experiencia con este vendedor?</p>
