@@ -6,16 +6,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php include '../includes/scripts.php' ?>
 		<title>Lista de usuarios</title>
-		<link rel="stylesheet" href="../css/style.css" />
-		<title>Lista de usuarios</title>
 	</head>
 	<body>     
-		<?php include '../includes/header.php' ?>
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
         <section id="container">
-            <h1>Lista de Usuarios</h1>
+            <h1><i class="fas fa-user"></i>Lista de Usuarios</h1>
 			<form action="buscar_usuarios.php" method="GET" class="form_search">
 				<input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
-				<input type="submit" value="Buscar" class="btn_search">
+				<button type="submit" value="Buscar" class="btn_search"><i class="fa fa-search"></i></button>
 			</form>
             <table>
                 <tr>
