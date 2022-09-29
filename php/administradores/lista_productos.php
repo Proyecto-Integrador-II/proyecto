@@ -8,7 +8,13 @@
 		<title>Lista de productos</title>
 	</head>
 	<body>     
-		<?php include '../includes/header.php' ?>
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
         <section id="container">
             <h1>Lista de productos</h1>
 			<form action="buscar_productos.php" method="GET" class="form_search">
@@ -28,14 +34,6 @@
 					<th>Acciones</th>
                 </tr>
             <?php
-                if(empty($_SESSION['active']))
-                {
-                    header('Location:login.php');
-                }
-                else if($_SESSION['user'] != 1){
-                    header('Location: logout.php');
-                }
-
 				require_once '../todos/conexion.php';
 				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM producto WHERE habilitado =1");
 				$result_register = mysqli_fetch_array($sql_registe);
@@ -69,7 +67,7 @@
                         <td>
                         
 						<a class="link_edit" href="./editar_productos.php?id=<?php echo $data['ID'];?>"><i class="far fa-edit"></i>Editar</a>
-                        <a class="link_delete" href="./eliminar_usuarios.php?id=<?php echo $data['ID'];?>">Eliminar</a>
+                        <a class="link_delete" href="./eliminar_productos.php?id=<?php echo $data['ID'];?>"><i class="far fa-trash-alt"></i>Eliminar</a>
 						
                         </td>
                     </tr>
