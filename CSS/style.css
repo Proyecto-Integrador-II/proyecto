@@ -41,6 +41,8 @@ input[type='number']::-webkit-inner-spin-button {
 .container {
 	max-width: 1400px;
 	margin: 0px auto;
+	top: 120px;
+    position: relative;
 }
 
 .title {
@@ -111,6 +113,8 @@ input[type='number']::-webkit-inner-spin-button {
 	border: 1px solid var(--box-shadows);
 	padding: 16px;
 	box-shadow: 1px 4px 16px var(--box-shadows);
+	top: 100px;
+    position: relative;
 }
 
 .form-card__subtitle {
