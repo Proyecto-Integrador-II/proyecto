@@ -10,7 +10,13 @@
 		<title></title>
 	</head>
 	<body>      
-	<?php include '../includes/header.php' ?>  
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
         <section id="container">
             <?php
                 $busqueda = strtolower($_REQUEST['busqueda']);
@@ -19,10 +25,10 @@
                     header('Location: ./lista_usuarios.php');
                 }
             ?>
-            <h1>Lista de Usuarios</h1>
+			<h1><i class="fas fa-user"></i>Lista de Usuarios</h1>
 			<form action="buscar_usuarios.php" method="GET" class="form_search">
 				<input type="text" name="busqueda" id="busqueda" placeholder="Buscar" value="<?php echo $busqueda; ?>">
-				<input type="submit" value="Buscar" class="btn_search">
+				<button type="submit" value="Buscar" class="btn_search"><i class="fas fa-search"></i></button>
 			</form>
 
 			
