@@ -10,8 +10,13 @@
 		<title>Editar usuarios</title>
 	</head>
 	<body>
-	<?php include '../includes/header.php' ?>
-
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=1))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
 		<div class="container">
 			<form class="form-card" id="signup-form" method="POST">
 				<h2 class="form-card__subtitle">Actualizar cuenta</h2>
