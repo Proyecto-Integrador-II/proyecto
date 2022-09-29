@@ -5,13 +5,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../CSS/Diseño.css" rel="stylesheet">
+        <?php include '../includes/scripts.php' ?>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
     </head>
     
     <body>
-        <?php
-            session_start();
-            include 'conexion.php';
+        <?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+			require_once '../todos/conexion.php';
             $usuario_id = $_SESSION['idUser'];
             $query = mysqli_query($conection, "SELECT * FROM `usuario` where idusuario = $usuario_id");
             $result = mysqli_fetch_array($query);
