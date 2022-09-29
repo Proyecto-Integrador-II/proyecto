@@ -8,7 +8,13 @@
 		<title>Añadir productos</title>
 	</head>
 	<body>
-	<?php include '../includes/header.php' ?>
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=2))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
 		<div class="container">
 			<form class="form-card" enctype="multipart/form-data" method="POST">
 				<h2 class="form-card__subtitle">Añade un producto</h2>
