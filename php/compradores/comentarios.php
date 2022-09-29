@@ -3,8 +3,17 @@
 <head>
     <title>Comentarios</title>
     <link rel="stylesheet" href="../CSS/comen.css">
+    <?php include '../includes/scripts.php' ?>
+
 </head>
 <body id="back" >
+    <?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+	?>
 
     <section class="opiniones" id="opiniones" >
 
