@@ -4,10 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/style.css" />
+		<?php include '../includes/scripts.php' ?>
 		<title>Reportes de Compradores</title>
 	</head>
 	<body>
+		<?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=2))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
 		<div class="container">
 			<form class="form-card" method="POST">
 				<h2 class="form-card__subtitle">Reportar un comprador</h2>
