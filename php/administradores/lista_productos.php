@@ -67,7 +67,7 @@
                         <td>
                         
 						<a class="link_edit" href="./editar_productos.php?id=<?php echo $data['ID'];?>"><i class="far fa-edit"></i>Editar</a>
-                        <a class="link_delete" href="./eliminar_productos.php?id=<?php echo $data['ID'];?>"><i class="far fa-trash-alt"></i>Eliminar</a>
+                        <a class="link_delete del_product" href="#" product="<?php echo $data['ID'];?>"><i class="far fa-trash-alt"></i>Eliminar</a>
 						
                         </td>
                     </tr>
