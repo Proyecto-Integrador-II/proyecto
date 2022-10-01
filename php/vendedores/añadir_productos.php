@@ -15,7 +15,7 @@
 			header('Location: ../todos/logout.php');
 		}  
 		?>
-		<div class="container">
+		<div class="container" id="container">
 			<form class="form-card" enctype="multipart/form-data" method="POST">
 				<h2 class="form-card__subtitle">Añade un producto</h2>
 
@@ -110,7 +110,7 @@
 
 			if($nombre_foto != '')
 			{
-				$destino = '../img/uploads/';
+				$destino = '../../img/uploads/';
 				$imgProducto = 'img_'.$nombre_producto.'.png';
 				$src = $destino.$imgProducto;
 			}
