@@ -29,5 +29,23 @@
             </ul>
         </li>
     <?php } ?>
+    <?php
+        if($_SESSION['user'] == 3){
+        ?>
+        <li class="principal">
+
+            <a href="#">Catalogo</a>
+            <ul>
+                <li><a href="Esqueleto.php">Todos</a></li>
+            </ul>
+        </li>
+        <li class="principal">
+
+            <a href="#">Recomendaciones</a>
+            <ul>
+                <li><a href="#">Comida</a></li>
+            </ul>
+        </li>
+    <?php } ?>
     </ul>
 </nav>
