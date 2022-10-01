@@ -62,8 +62,8 @@
                         <td>
                         
 						<?php if($data['rol'] != 'Administradores'){ ?>
-							<a class="link_edit" href="./editar_usuarios.php?id=<?php echo $data['idusuario'];?>">Editar</a>
-                            <a class="link_delete" href="./eliminar_usuarios.php?id=<?php echo $data['idusuario'];?>">Eliminar</a>
+							<a class="link_edit" href="./editar_usuarios.php?id=<?php echo $data['idusuario'];?>"><i class="far fa-edit"></i>Editar</a>
+							<a class="link_delete del_user" href="#" user="<?php echo $data['idusuario'];?>"><i class="far fa-trash-alt"></i>Eliminar</a>
 						<?php } ?>
                         </td>
                     </tr>
