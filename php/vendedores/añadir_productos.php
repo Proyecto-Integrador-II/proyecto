@@ -111,7 +111,8 @@
 			if($nombre_foto != '')
 			{
 				$destino = '../../img/uploads/';
-				$imgProducto = 'img_'.$nombre_producto.'.png';
+				$img_nombre = 'img_'.md5(date('d-m-Y H:i:s'));
+				$imgProducto = $img_nombre.'.png';
 				$src = $destino.$imgProducto;
 			}
 			$query_insert = mysqli_query($conection,"INSERT INTO producto(nombre,precio,lugar,descripcion,foto,proveedor) VALUES ('$nombre_producto','$precio_producto','$lugar_producto','$descripcion_producto','$imgProducto','$usuario_id')");	
