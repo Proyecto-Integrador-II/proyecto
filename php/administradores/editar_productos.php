@@ -21,35 +21,44 @@
                 <?php
 				require_once '../todos/conexion.php';
 				if(!empty($_POST))
-				{
-					if(empty($_POST['nombre_producto']) || empty($_POST['precio_producto']) || empty($_POST['lugar_producto'])  || empty($_POST['descripcion_producto']) || empty($_POST['foto_producto'])) 
-					{
-						$alert='<p class="msg_error">Todos los campos son obligatorios</p>';
-					}
-					else{
+				{		
+					if(!empty($_POST['codproducto']) || !empty($_POST['nombre_producto']) || !empty($_POST['precio_producto']) || !empty($_POST['lugar_producto']) || !empty($_POST['descripcion_producto']) || !empty($_POST['foto_actual']) || !empty($_POST['foto_remove']));
+						$codproducto = $_POST['codproducto'];
 						$nombre_producto = $_POST['nombre_producto'];
 						$precio_producto = $_POST['precio_producto'];
 						$lugar_producto = $_POST['lugar_producto'];
 						$descripcion_producto = $_POST['descripcion_producto'];
+						$imgProducto  = $_POST['foto_actual'];
+						$imgRemove = $_POST['foto_remove'];
 						$foto = $_FILES['foto'];
 						$nombre_foto = $foto['name'];
 						$type = $foto['type'];
 						$url_temp = $foto['tmp_name'];
-						$imgProducto  = 'img_producto.png';
+						$upd = '';
 
 						if($nombre_foto != '')
 						{
 							$destino = '../../img/uploads/';
-							$imgProducto = 'img_'.$nombre_producto.'.png';
+							$img_nombre = 'img_'.md5(date('d-m-Y H:i:s'));
+							$imgProducto = $img_nombre.'.png';
 							$src = $destino.$imgProducto;
+						}
+						else{
+							if($_POST['foto_actual'] != $_POST['foto_remove']){
+								$imgProducto = 'img_producto.png';
+							}
 						}
 						
 						
 
-						$query_update = mysqli_query($conection,"UPDATE producto SET nombre = '$nombre_producto',precio ='$precio_producto',lugar='$lugar_producto',foto='$imgProducto' WHERE codproducto = $codproducto;");
+						$query_update = mysqli_query($conection,"UPDATE producto SET nombre = '$nombre_producto',precio ='$precio_producto',lugar='$lugar_producto',descripcion ='$descripcion_producto',foto='$imgProducto' WHERE codproducto = $codproducto;");
 
-						if($sql_update)
+						if($query_update)
 						{
+							if(($nombre_foto != '' && ($_POST['foto_actual'] != 'img_producto.png')) || ($_POST['foto_actual'] != $_POST['foto_remove']))
+							{
+								unlink('../../img/uploads/'.$_POST['foto_actual']);
+							}
 							if($nombre_foto != '')
 							{
 								move_uploaded_file($url_temp,$src);
@@ -60,7 +69,7 @@
 							echo 'Error al actualizar el producto';
 						}
 						
-					}
+					
 				}
                 if(empty($_GET['id']))
                 {
@@ -176,7 +185,7 @@
                 </div>
 
 				<div class="form-card__buttons">
-					<button class="btn btn--green btn--block" type="submit" name="crear">Añadir producto</button>
+					<button class="btn btn--green btn--block" type="submit" name="crear">Actualizar producto</button>
 				</div>
 			</form>
 		</div>
