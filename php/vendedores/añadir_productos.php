@@ -78,7 +78,6 @@
 	</body>
 </html>
 <?php
-	session_start();
 	require_once '../todos/conexion.php';
 	if(!empty($_POST))
 	{
