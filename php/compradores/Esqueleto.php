@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../CSS/Diseño.css" rel="stylesheet">
         <?php include '../includes/scripts.php' ?>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
     </head>
     
     <body>
