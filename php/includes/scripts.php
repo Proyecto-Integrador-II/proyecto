@@ -1,8 +1,5 @@
-<link rel="stylesheet" type="text/css" href="../../CSS/comen.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/contraseñaperdida.css">
 <link rel="stylesheet" type="text/css" href="../../CSS/style.css">
 <link rel="stylesheet" type="text/css" href="../../CSS/datos.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/Diseño.css">
 <link href="../../fontawesome-free-6.2.0-web/css/fontawesome.css" rel="stylesheet"> 
 <link href="../../fontawesome-free-6.2.0-web/css/brands.css" rel="stylesheet">
 <link href="../../fontawesome-free-6.2.0-web/css/solid.css" rel="stylesheet">
