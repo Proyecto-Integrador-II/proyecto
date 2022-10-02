@@ -4,7 +4,6 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../CSS/Diseño.css" rel="stylesheet">
         <?php include '../includes/scripts.php' ?>
     </head>
     
@@ -17,49 +16,28 @@
 		}  
 		require_once '../todos/conexion.php';
         ?>
-        <div class="grid-container">
-            <div class="grid-container-numeros">
-                <div>
-                    <h3 class="nombre_producto">
-                        Empanada
-                    </h3>
-                    <img class="imagen_producto" src="https://cdn.shopify.com/s/files/1/0548/9888/4843/products/Empanadas_El_Machetico_Empanada_de_papa_y_carne_x_10_unidades_2.jpg?v=1633958068">
-                    <p class="precio_producto">
-                        2500
-                    </p>
+        <div class="container">
+            <section class="container products" id="productsSection">
+                <?php 
+                    $query = mysqli_query($conection, "SELECT codproducto, descripcion,foto,nombre,precio FROM producto WHERE habilitado = 1");
+                    mysqli_close($conection);
+                    $result = mysqli_num_rows($query);
 
-                </div>
-                <div>
-                    <h3 class="nombre_producto">
-                        Hamburguesa
-                    </h3>
-                    <img class="imagen_producto" src="https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/FJKXKQKMMJBV7KQ7XQ3YNFO7LU.jpg">
-                    <p class="precio_producto">
-                        5000
-                    </p>
-
-                </div>
-                <div>
-                    <h3 class="nombre_producto">
-                        Perro
-                    </h3>
-                    <img class="imagen_producto" src="https://misrecetascolombia.com/wp-content/uploads/2020/12/Perros-Calientes-Colombianos.jpg">
-                    <p class="precio_producto">
-                        3000
-                    </p>
-
-                </div>
-                <div>
-                    <h3 class="nombre_producto">
-                        Galleta
-                    </h3>
-                    <img class="imagen_producto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbR-E_fS13rUZ4UsxBzdaACaRiSB_E39bTNg&usqp=CAU">
-                    <p class="precio_producto">
-                        1000
-                    </p>
-
-                </div>
-            </div>
+                    if($result > 0)
+                    {
+                        while ($data = mysqli_fetch_array($query))
+                        {
+                ?>
+                            <article class="product" data-id="<?php echo $data['codproducto'] ?>">
+                                <img class="product__image" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
+                                <h3 class="product__title"><?php echo $data['nombre'] ?></h3>
+                                <p class="product__price"><?php echo $data['precio'] ?></p>
+                                <button class="btn btn--orange btn--block product__cart-button" data-product-id="<?php echo $data['codproducto'] ?>" type="button">
+                                    <i class="fa-solid fa-basket-shopping"></i>Añadir a la canasta</button>
+                            </article>
+                        <?php } ?>
+                    <?php } ?>
+            </section>
         </div>
     </body>
 </html>
