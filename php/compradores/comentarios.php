@@ -2,9 +2,7 @@
 <html>
 <head>
     <title>Comentarios</title>
-    <link rel="stylesheet" href="../CSS/comen.css">
-    <?php include '../includes/scripts.php' ?>
-
+    <link rel="stylesheet" href="../../CSS/comen.css">
 </head>
 <body id="back" >
     <?php 
