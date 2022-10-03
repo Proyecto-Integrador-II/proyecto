@@ -25,7 +25,7 @@
 
             <a href="#">Productos</a>
             <ul>
-                <li><a href="añadir_productos.php">Añador prodictos</a></li>
+                <li><a href="añadir_productos.php">Añadir productos</a></li>
             </ul>
         </li>
     <?php } ?>
