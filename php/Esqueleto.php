@@ -48,6 +48,7 @@
                     <li><a href="#">Delacuesta</a></li>
                     <li><a href="#">Parque Caracoli</a>
                     <li id="reseña" ><a href="comentarios.php">RESEÑAS-(Clientes)</a>
+                    <li><a href="#">Carrito</a>
                     
         
                     <div class="search">
@@ -68,7 +69,9 @@
                         <p class="precio_producto">
                             2500
                         </p>
-
+                        <button>
+                            Agregar al carrito
+                        </button>
                     </div>
                     <div>
                         <h3 class="nombre_producto">
@@ -78,6 +81,9 @@
                         <p class="precio_producto">
                             5000
                         </p>
+                        <button>
+                            Agregar al carrito
+                        </button>
 
                     </div>
                     <div>
@@ -88,6 +94,9 @@
                         <p class="precio_producto">
                             3000
                         </p>
+                        <button>
+                            Agregar al carrito
+                        </button>
 
                     </div>
                     <div>
@@ -98,6 +107,9 @@
                         <p class="precio_producto">
                             1000
                         </p>
+                        <button>
+                            Agregar al carrito
+                        </button>
 
                     </div>
                 </div>
