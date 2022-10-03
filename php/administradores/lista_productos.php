@@ -30,11 +30,29 @@
                     <th>Lugar</th>
                     <th>Descripcion</th>
                     <th>Foto</th>
-                    <th>Proveedor</th>
+                    <th>
+					<?php 
+						require_once '../todos/conexion.php';
+						$query_proveedor = mysqli_query($conection, "SELECT * FROM usuario where habilitado =1 and rol= 2 order by idusuario ASC");
+						$result_proveedor = mysqli_num_rows($query_proveedor);
+					?>
+					<select name="proveedor" id="search_proveedor">
+					<option value="" selected>Proveedor</option>
+						<?php 
+							if($result_proveedor >0)
+							{
+								while ($proveedor = mysqli_fetch_array($query_proveedor)) { 
+						?>
+								<option value="<?php echo $proveedor['idusuario']; ?>"><?php echo $proveedor['nombre'] ?>
+						<?php
+								}
+							}
+						?>
+					</select>
+					</th>
 					<th>Acciones</th>
                 </tr>
             <?php
-				require_once '../todos/conexion.php';
 				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM producto WHERE habilitado =1");
 				$result_register = mysqli_fetch_array($sql_registe);
 				$total_registro = $result_register['total_registro'];
