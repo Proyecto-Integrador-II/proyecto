@@ -17,6 +17,10 @@
 		require_once '../todos/conexion.php';
         ?>
         <div class="container">
+            <form action="buscar_productos.php" method="GET" class="form_search">
+				<input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
+				<input type="submit" value="Buscar" class="btn_search">
+			</form>
             <section class="container products" id="productsSection">
                 <?php 
                     $query = mysqli_query($conection, "SELECT codproducto, descripcion,foto,nombre,precio FROM producto WHERE habilitado = 1");
