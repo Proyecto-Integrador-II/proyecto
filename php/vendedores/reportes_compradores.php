@@ -19,20 +19,9 @@
 			<form class="form-card" method="POST">
 				<h2 class="form-card__subtitle">Reportar un comprador</h2>
 
-				<div class="form-card__group">
-					<label class="form-card__label" for="nombre_comprador">Nombre del comprador:</label>
-					<input
-						class="form-card__input"
-						type="text"
-						name="nombre_comprador"
-						id="nombre_comprador"
-						placeholder="Nombre del comprador"
-					/>
-				</div>
-
                 <div class="form-card__group">
-					<label class="form-card__label" for="lugar_producto">razon del reporte:</label>
-					<select name="lugar_producto">
+					<label class="form-card__label" for="razon_reporte">razon del reporte:</label>
+					<select name="razon_reporte">
                         <option value="1">Irrespeto con el vendedor</option>
                         <option value="2">No pagó</option>
                         <option value="3">No se encontraba en el lugar de pedido</option>
@@ -63,7 +52,58 @@
 				</div>
 			</form>
 		</div>
-        <script src="../JavaScript/jquery.min.js"></script>
-        <script src="../JavaScript/functions.js"></script>
 	</body>
 </html>
+<?php
+	require_once '../todos/conexion.php';
+	if(!empty($_POST))
+	{
+		$alert='';
+		if(empty($_POST['razon_reporte']) || empty($_POST['descripcion_reporte_comprador']))
+		{
+			echo 'Todos los campos son obligatorios';
+		}else{
+			$descripcion_reporte_comprador = $_POST['descripcion_reporte_comprador']; ;
+
+			if($_REQUEST['razon_reporte'] == '1'){
+				$razon_reporte = 1;
+			}
+			else if($_REQUEST['razon_reporte'] == '2'){
+				$razon_reporte = 2;
+			}
+			else if($_REQUEST['razon_reporte'] == '3'){
+				$razon_reporte = 3;
+			}
+			else if($_REQUEST['razon_reporte'] == '4'){
+				$razon_reporte = 4;
+			}
+
+			$usuario_id = $_SESSION['idUser'];
+			$foto = $_FILES['foto'];
+			$nombre_foto = $foto['name'];
+			$type = $foto['type'];
+			$url_temp = $foto['tmp_name'];
+			$imgProducto  = 'img_reporte.png';
+
+			if($nombre_foto != '')
+			{
+				$destino = '../../img/uploads/';
+				$img_nombre = 'img_'.md5(date('d-m-Y H:i:s'));
+				$imgProducto = $img_nombre.'.png';
+				$src = $destino.$imgProducto;
+			}
+			$query_insert = mysqli_query($conection,"INSERT INTO reporte() VALUES ()");	
+			
+			if($query_insert)
+            {
+				if($nombre_foto != ''){
+					move_uploaded_file($url_temp,$src);
+				}
+				echo 'Reporte guardado correctamente';
+			}else{
+				echo 'Error al guardar el reporte';
+			}
+		}	
+	}
+
+?>
