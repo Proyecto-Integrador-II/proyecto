@@ -1116,12 +1116,13 @@ input[type='number']::-webkit-inner-spin-button {
 
 .content-modal .btn-cerrar label{
 	padding: 7px 10px;
-	background-color: #009929;
+	background-color: orange;
 	color: black;
 	border-radius: 4px;
 	cursor:pointer;
 }
 
 .content-modal .btn-cerrar label:hover{
-	background-color: orange;
+	background-color: #009929;
+	
 }
