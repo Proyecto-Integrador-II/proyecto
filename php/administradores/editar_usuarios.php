@@ -6,8 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php include '../includes/scripts.php' ?>
 		<title>Editar usuarios</title>
-		<link rel="stylesheet" href="../css/style.css" />
-		<title>Editar usuarios</title>
 	</head>
 	<body>
 		<?php 
