@@ -99,10 +99,12 @@ header{
     display: -o-flex;
     display: flex;
     margin-left: 30px;
+    text-decoration: none;
+    color: white;
 }
 nav ul{
-	background: #058167;
-	/*background: #05817d;*/
+	background: orange;
+	background: orange;
 	list-style: none;
 	display: -webkit-flex;
 	display: -moz-flex;
@@ -124,7 +126,7 @@ nav a{
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	transition: background .5s;
-	border-right: 1px solid #319B8F;
+	border-right: 1px solid orange;
 }
 nav .principal > a{
     background: url(../images/arrow_bottom.png) no-repeat;
@@ -139,7 +141,7 @@ nav ul li:hover ul{
 }
 nav li ul{
 	/*background: #177470;*/
-	background: #2d9872;
+	background: orange;
 	display: none;
 	flex-direction: column;
 	position: absolute;
