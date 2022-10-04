@@ -15,12 +15,45 @@
 			header('Location: ../todos/logout.php');
 		}  
 		?>
-		<div class="container">
-			<form class="form-card" method="POST">
+		<div class="container" id="container">
+			<form class="form-card" enctype="multipart/form-data" method="POST">
 				<h2 class="form-card__subtitle">Reportar un comprador</h2>
+				<?php
+				require_once '../todos/conexion.php';
+				if(empty($_GET['id']))
+				{
+					echo 'no recibe nada';
+				}
+ 
+				$iduser = $_GET['id'];
+				$sql = mysqli_query($conection,"SELECT u.idusuario FROM usuario u WHERE idusuario = $iduser");
+				$result_sql = mysqli_num_rows($sql);
+ 
+				if($result_sql == 0)
+				{
+					header("Location: lista_compradores.php");
+				}
+  
+				else{
+					while($data = mysqli_fetch_array($sql)){
+						$iduser = $data['idusuario'];
+					}
+					 
+				}
+				?>
+				<div class="form-card__group">
+					<label class="form-card__label"></label>
+					<input
+						class="form-card__input"
+						type="hidden"
+						name="idUsuario"
+                        value="<?php echo $iduser; ?>"
+					/>
+					
+				</div>
 
                 <div class="form-card__group">
-					<label class="form-card__label" for="razon_reporte">razon del reporte:</label>
+					<label class="form-card__label" for="razon_reporte">Razon del reporte:</label>
 					<select name="razon_reporte">
                         <option value="1">Irrespeto con el vendedor</option>
                         <option value="2">No pagó</option>
@@ -44,7 +77,7 @@
                         <input type="file" name="foto" id="foto">
                     </div>
                     <div id="form_alert"></div>
-                
+                 
                 </div>
 
 				<div class="form-card__buttons">
@@ -55,55 +88,52 @@
 	</body>
 </html>
 <?php
-	require_once '../todos/conexion.php';
-	if(!empty($_POST))
+if(!empty($_POST))
+{
+	$alert='';
+	if(empty($_POST['razon_reporte']) || empty($_POST['descripcion_reporte_comprador']))
 	{
-		$alert='';
-		if(empty($_POST['razon_reporte']) || empty($_POST['descripcion_reporte_comprador']))
+		echo 'Todos los campos son obligatorios';
+	}else{
+		$descripcion_reporte_comprador = $_POST['descripcion_reporte_comprador']; ;
+
+		if($_REQUEST['razon_reporte'] == '1'){
+			$razon_reporte = 1;
+		}
+		else if($_REQUEST['razon_reporte'] == '2'){
+			$razon_reporte = 2;
+		}
+		else if($_REQUEST['razon_reporte'] == '3'){
+			$razon_reporte = 3;
+		}
+		else if($_REQUEST['razon_reporte'] == '4'){
+			$razon_reporte = 4;
+		}
+
+		$idUsuario = $_POST['idUsuario'];
+		$foto = $_FILES['foto'];
+		$nombre_foto = $foto['name'];
+		$type = $foto['type'];
+		$url_temp = $foto['tmp_name'];
+		$imgReseña  = 'img_reporte.png';
+
+		if($nombre_foto != '')
 		{
-			echo 'Todos los campos son obligatorios';
+			$destino = '../../img/reports/';
+			$img_nombre = 'img_'.md5(date('d-m-Y H:i:s'));
+			$imgReseña = $img_nombre.'.png';
+			$src = $destino.$imgReseña;
+		}
+		$query_insert = mysqli_query($conection,"INSERT INTO reporte(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_comprador','$imgReseña')");	
+		
+		if($query_insert)
+		{
+			if($nombre_foto != ''){
+				move_uploaded_file($url_temp,$src);
+			}
+			echo 'Reporte guardado correctamente';
 		}else{
-			$descripcion_reporte_comprador = $_POST['descripcion_reporte_comprador']; ;
-
-			if($_REQUEST['razon_reporte'] == '1'){
-				$razon_reporte = 1;
-			}
-			else if($_REQUEST['razon_reporte'] == '2'){
-				$razon_reporte = 2;
-			}
-			else if($_REQUEST['razon_reporte'] == '3'){
-				$razon_reporte = 3;
-			}
-			else if($_REQUEST['razon_reporte'] == '4'){
-				$razon_reporte = 4;
-			}
-
-			$usuario_id = $_SESSION['idUser'];
-			$foto = $_FILES['foto'];
-			$nombre_foto = $foto['name'];
-			$type = $foto['type'];
-			$url_temp = $foto['tmp_name'];
-			$imgProducto  = 'img_reporte.png';
-
-			if($nombre_foto != '')
-			{
-				$destino = '../../img/uploads/';
-				$img_nombre = 'img_'.md5(date('d-m-Y H:i:s'));
-				$imgProducto = $img_nombre.'.png';
-				$src = $destino.$imgProducto;
-			}
-			$query_insert = mysqli_query($conection,"INSERT INTO reporte() VALUES ()");	
-			
-			if($query_insert)
-            {
-				if($nombre_foto != ''){
-					move_uploaded_file($url_temp,$src);
-				}
-				echo 'Reporte guardado correctamente';
-			}else{
-				echo 'Error al guardar el reporte';
-			}
-		}	
-	}
-
-?>
+			echo 'Error al guardar el reporte';
+		}
+	}	
+}
