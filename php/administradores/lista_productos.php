@@ -73,7 +73,7 @@
                     while ($data = mysqli_fetch_array($query))
                     {
                         $foto='../../img/uploads/'.$data['Foto'];
-                ?>
+            ?>
                     <tr>
                         <td><?php echo $data['ID'] ?></td>
                         <td><?php echo $data['Nombre'] ?></td>

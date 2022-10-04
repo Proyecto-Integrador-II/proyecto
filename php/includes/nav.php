@@ -28,6 +28,12 @@
                 <li><a href="añadir_productos.php">Añadir productos</a></li>
             </ul>
         </li>
+        <li class="principal">
+            <a href="#">Reportes</a>
+            <ul>
+                <li><a href="reportes_compradores.php">Reportar compradores</a></li>
+            </ul>
+        </li>
     <?php } ?>
     <?php
         if($_SESSION['user'] == 3){
