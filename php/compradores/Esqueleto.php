@@ -8,14 +8,14 @@
     </head>
     
     <body>
-        <?php 
-		include '../includes/header.php';
-		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
-		{
-			header('Location: ../todos/logout.php');
-		}  
-		require_once '../todos/conexion.php';
-        ?>
+            <?php 
+            include '../includes/header.php';
+            if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
+            {
+                header('Location: ../todos/logout.php');
+            }  
+            require_once '../todos/conexion.php';
+            ?>
         <div class="container">
             <form action="buscar_productos.php" method="GET" class="form_search">
 				<input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
@@ -42,6 +42,9 @@
                         <?php } ?>
                     <?php } ?>
             </section>
+        </div>
+        <div>
+            <h1>prueba</h1>
         </div>
     </body>
 </html>
