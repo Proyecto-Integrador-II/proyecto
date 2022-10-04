@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,6 +43,24 @@
                         <?php } ?>
                     <?php } ?>
             </section>
+        </div>
+        
+        <div id="motalcompleto">
+            <input type="checkbox" id="btn-modal">
+            <div class="boton-modal">
+                <label for="btn-modal">
+                    Carrito
+                </label>
+            </div>
+
+            <div class="container-modal">
+                <div class="content-modal">
+                    <h2>Tú carrito</h2>
+                    <div class="btn-cerrar">
+                        <label for="btn-modal">Cerrar</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
