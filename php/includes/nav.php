@@ -31,7 +31,7 @@
         <li class="principal">
             <a href="#">Reportes</a>
             <ul>
-                <li><a href="reportes_compradores.php">Reportar compradores</a></li>
+                <li><a href="lista_compradores.php">Reportar compradores</a></li>
             </ul>
         </li>
     <?php } ?>
@@ -53,8 +53,12 @@
             </ul>
 
         </li>
-
-
+        <li class="principal">
+            <a href="#">Reportes</a>
+            <ul>
+                <li><a href="lista_vendedores.php">Reportar vendedores</a></li>
+            </ul>
+        </li>
 
     <?php } ?>
     </ul>
