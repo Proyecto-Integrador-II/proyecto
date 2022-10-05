@@ -53,8 +53,12 @@
             </ul>
 
         </li>
-
-
+        <li class="principal">
+            <a href="#">Reportes</a>
+            <ul>
+                <li><a href="lista_vendedores.php">Reportar vendedores</a></li>
+            </ul>
+        </li>
 
     <?php } ?>
     </ul>
