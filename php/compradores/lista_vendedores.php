@@ -5,12 +5,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php include '../includes/scripts.php' ?>
-		<title>Lista de compradores</title>
+		<title>Lista de vendedores</title>
 	</head>
 	<body>     
 		<?php 
 		include '../includes/header.php';
-		if(empty($_SESSION['active']) || ($_SESSION['user'] !=2))
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
 		{
 			header('Location: ../todos/logout.php');
 		}  
@@ -32,7 +32,7 @@
             <?php
 				require_once '../todos/conexion.php';
 				
-				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM usuario WHERE rol = 3 and habilitado =1");
+				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM usuario WHERE rol = 2 and habilitado =1");
 				$result_register = mysqli_fetch_array($sql_registe);
 				$total_registro = $result_register['total_registro'];
 				$por_pagina = 50;
@@ -43,7 +43,7 @@
 				}
 				$desde = ($pagina-1)*$por_pagina;
 				$total_paginas = ceil($total_registro/$por_pagina);
-                $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre,u.apellido,u.correo FROM usuario u where rol = 3 and habilitado =1 ORDER BY u.idusuario ASC limit $desde,$por_pagina");
+                $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre,u.apellido,u.correo FROM usuario u where rol = 2 and habilitado =1 ORDER BY u.idusuario ASC limit $desde,$por_pagina");
                 mysqli_close($conection);
 				$result = mysqli_num_rows($query);
 
@@ -58,7 +58,7 @@
                         <td><?php echo $data['apellido'] ?></td>
                         <td><?php echo $data['correo'] ?></td>
                         <td>
-							<a class="" href="./reportes_compradores.php?id=<?php echo $data['idusuario'];?>"><i class=""></i>Reportar</a>
+							<a class="" href="./reportes_vendedores.php?id=<?php echo $data['idusuario'];?>"><i class=""></i>Reportar</a>
                         </td>
                     </tr>
             <?php

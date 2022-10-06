@@ -31,7 +31,7 @@
 
 				if($result_sql == 0)
 				{
-					header("Location: lista_compradores.php");
+					header("Location: lista_vendedores.php");
 				}
 
 				else{
@@ -64,7 +64,7 @@
 
                 <div class="form-card__group">
 					<label class="form-card__label" for="descripcion_producto">Descripcion:</label>
-                    <textarea id="descripcion_reporte_comprador" name="descripcion_reporte_comprador" rows="4" cols="50"></textarea>
+                    <textarea id="descripcion_reporte_vendedor" name="descripcion_reporte_vendedor" rows="4" cols="50"></textarea>
 				</div>
 
                 <div class="form-card__group">
@@ -81,7 +81,7 @@
                 </div>
 
 				<div class="form-card__buttons">
-					<button class="btn btn--green btn--block" type="submit" name="reportar">Reportar comprador</button>
+					<button class="btn btn--green btn--block" type="submit" name="reportar">Reportar vendedor</button>
 				</div>
 			</form>
 		</div>
@@ -91,11 +91,11 @@
 if(!empty($_POST))
 {
 	$alert='';
-	if(empty($_POST['razon_reporte']) || empty($_POST['descripcion_reporte_comprador']))
+	if(empty($_POST['razon_reporte']) || empty($_POST['descripcion_reporte_vendedor']))
 	{
 		echo 'Todos los campos son obligatorios';
 	}else{
-		$descripcion_reporte_comprador = $_POST['descripcion_reporte_comprador']; ;
+		$descripcion_reporte_vendedor = $_POST['descripcion_reporte_vendedor']; ;
 
 		if($_REQUEST['razon_reporte'] == '1'){
 			$razon_reporte = 1;
@@ -124,7 +124,7 @@ if(!empty($_POST))
 			$imgReseña = $img_nombre.'.png';
 			$src = $destino.$imgReseña;
 		}
-		$query_insert = mysqli_query($conection,"INSERT INTO reporte(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_comprador','$imgReseña')");	
+		$query_insert = mysqli_query($conection,"INSERT INTO reporte(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_vendedor','$imgReseña')");	
 		
 		if($query_insert)
 		{
