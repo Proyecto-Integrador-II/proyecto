@@ -40,7 +40,7 @@
         ?>
         <li class="principal">
 
-            <a href="#">Catalogo</a>
+            <a href="#">Catálogo</a>
             <ul>
                 <li><a href="Esqueleto.php">Todos</a></li>
             </ul>
