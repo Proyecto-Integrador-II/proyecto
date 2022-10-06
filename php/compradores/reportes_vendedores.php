@@ -53,7 +53,7 @@
 				</div>
 
                 <div class="form-card__group">
-					<label class="form-card__label" for="razon_reporte">Razon del reporte:</label>
+					<label class="form-card__label" for="razon_reporte">Razón del reporte:</label>
 					<select name="razon_reporte">
                         <option value="1">Irrespeto con el comprador</option>
                         <option value="2">No ofreció el producto</option>
