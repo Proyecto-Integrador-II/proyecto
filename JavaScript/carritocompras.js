@@ -1,0 +1,1 @@
+const contenedorPro = document.getElementById('contenedor-productos');
