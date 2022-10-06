@@ -8,9 +8,11 @@
         <?php include '../includes/scripts.php' ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="../../JavaScript/carritocompras.js"></script>
+        <script src="../../JavaScript/comprasfinal.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
     </head>
     
     <body>
@@ -184,9 +186,81 @@
         </div>
         -->
         
-        <div id="contenedor-productos">
-                
+            <div class="cart-products" id="products-id">
+                <p class="close-btn" onclick="closeBtn()">X</p>
+                <h3>Mi carrito</h3>
+                <div class="card-items">
+                    <!-- <div class="item">
+                        <img src="./images/products/keyboard-1.jpg" alt="">
+                        <div class="item-content">
+                            <h5>name of product name of product name of product</h5>
+                            <h5 class="cart-price">45.50$</h5>
+                            <h6>Amount: 3</h6>
+                        </div>
+                        <span>X</span>
+                    </div>
+    
+                    <div class="item">
+                        <img src="./images/products/keyboard-1.jpg" alt="">
+                        <div class="item-content">
+                            <h5>name of product name of product name of product</h5>
+                            <h5 class="cart-price">45.50$</h5>
+                            <h6>Amount: 3</h6>
+                        </div>
+                        <span class="delete-product" data-id="">X</span>
+                    </div> -->
+                </div>
+                <h2>Total: <strong class="price-total">0</strong> $</h2>
+            </div>
         </div>
+    </header>
+    <section class="container">
+        <div class="products">
+            <div class="carts">
+                <div>
+                    <img src="1.jpg" alt="" >
+                    <p><span>20</span>$</p>
+                </div>
+                <p class="title">Tempest Cataclysm Combo 3 En 1 Gaming Teclado</p>
+                <a href="" data-id="1" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="1.jpg" alt="">
+                    <p><span>35</span>$</p>
+                </div>
+                <p class="title"> Newskill Suiko Ivory Teclado Mecánico Gaming Full RGB</p>
+                <a href="" class="btn-add-cart" data-id="2">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="1.jpg" alt="">
+                    <p><span>15.50</span>$</p>
+                </div>
+                <p class="title"> Aukey KM-G16 Teclado Mecánico Gaming Retroiluminado</p>
+                <a href="" data-id="3" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="1.jpg" alt="">
+                    <p><span>20.20</span>$</p>
+                </div>
+                <p class="title"> Razer Huntsman Elite Teclado Mecánico Gaming RGB</p>
+                <a href="" data-id="4" class="btn-add-cart">add to cart</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showCart(x){
+            document.getElementById("products-id").style.display = "block";
+        }
+        function closeBtn(){
+            document.getElementById("products-id").style.display = "none";
+        }
+
+    </script>
+    <script src="./custom.js" ></script>
 
 
 
