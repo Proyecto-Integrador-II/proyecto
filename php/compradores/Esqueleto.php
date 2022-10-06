@@ -75,20 +75,124 @@
         </div>
 
         
-        
+        <!-- ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
         <div>
             <div class="nav container">
                 <a href="" class="logo">Carrito</a>
                 <!-- ICON CART -->
                 <i class='bx bxs-shopping-bag' id="icon-cart"></i>
+                <!-- CART -->
+                <div class="carta">
+                        <h2 class="carta-title">Your cart</h2>
+
+                        <div class="carta-content">
+                            <div class="carta-box">
+                                <img src="1.jpg" alt="" class="carta-img">
+                                <div class="detalles-box">
+                                    <div class="carta-product-title">Si</div>
+                                    <div class="carta-price">$25</div>
+                                    <input type="number" value="1" class="carta-quantity">
+                                </div>
+
+                                <i class='bx bx-trash-alt carta-remove' ></i>
+
+                            </div>
+                        </div>
+                        <div class="total">
+                            <div class="title-total">Total</div>
+                            <div class="price-total">$0</div>
+                        </div>
+
+                        <button type="button" class="btn-buy">Buy</button>
+
+                        <i class='bx bxs-shield-x' id="close-cart" ></i>
+                </div>
             </div>
         </div>
 
         <section class="shop container">
-                <div class="section-title">Shop</div>
+                <h2 class="section-title">Shop</h2>
+                <div class="shop-content">
+                    <!-- box 1 -->
+                    <div class="product-box">
+                        <img src="1.jpg" alt="" class="product-img" >
+                        <h2 class="product-title">Prueba</h2>
+                        <span class="price">$24</span>
+                        <i class='bx bx-shopping-bag cart-add'></i>
+                    </div>
+
+
+                </div>
         </section>
 
+        <script>
+            let cartIcon = document.querySelector('#icon-cart');
+            let cart = document.querySelector('.carta');
+            let closeCart = document.querySelector('#close-cart');
 
+            cartIcon.onclick = () =>{
+                cart.classList.add('active')
+            };
+
+            closeCart.onclick = () =>{
+                cart.classList.remove('active')
+            };
+
+            if (document.readyState == 'loading'){
+                document.addEventListener('DOMContentLoaded', ready)
+            }else{
+                ready();
+            }
+
+            function ready(){
+                var removeCartButtons = document.getElementsByClassName('carta-remove')
+                for(var i = 0; i<removeCartButtons.length; i++){
+                    var button = removeCartButtons[i]
+                    button.addEventListener('click' ,removeCartIcon)
+                }
+                var quantityInputs = document.getElementsByClassName('carta-quantity');
+                for (var i = 0; i<quantityInputs.length; i++){
+                    var input = quantityInputs[i]
+                    input.addEventListener('change', quantitychanged);
+                }
+            }
+
+
+            function removeCartIcon(event){
+                console.log(removeCartIcon)
+                var buttonClicked = event.target;
+                buttonClicked.parentElement.remove();
+                updatetotal();
+            }
+
+            function quantitychanged(event){
+                var input = event.target
+                if (isNaN(input.value) || input.value <= 0){
+                    input.value = 1;
+                };
+                updatetotal();
+            }
+
+
+
+            function updatetotal(){
+                var cartContent = document.getElementsByClassName('carta-content')[0];
+                var cartBoxes = cartContent.getElementsByClassName('carta-box');
+                var total = 0;
+                for(var i = 0; i<cartBoxes.length; i++){
+                    var cartBox = cartBoxes[i];
+                    var priceElement = cartBox.getElementsByClassName('carta-price')[0];
+                    var quiantityElement = cartBox.getElementsByClassName('carta-quantity')[0];
+                    var price = parseFloat(priceElement.innerText.replace('$',''));
+                    var quantity = quiantityElement.value;
+                    total= total + (price * quantity);
+
+                    document.getElementsByClassName('price-total')[0].innerText = '$' + total;
+                }
+            }
+
+
+        </script>
 
 
 
