@@ -58,7 +58,7 @@
                         <td><?php echo $data['apellido'] ?></td>
                         <td><?php echo $data['correo'] ?></td>
                         <td>
-							<a class="" href="./reportes_vendedores.php?id=<?php echo $data['idusuario'];?>"><i class=""></i>Reportar</a>
+							<a class="" href="reportes_vendedores.php?id=<?php echo $data['idusuario'];?>"><i class=""></i>Reportar</a>
                         </td>
                     </tr>
             <?php

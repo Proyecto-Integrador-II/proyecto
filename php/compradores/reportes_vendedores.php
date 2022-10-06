@@ -10,7 +10,7 @@
 	<body>
 		<?php 
 		include '../includes/header.php';
-		if(empty($_SESSION['active']) || ($_SESSION['user'] !=2))
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
 		{
 			header('Location: ../todos/logout.php');
 		}  
@@ -55,15 +55,15 @@
                 <div class="form-card__group">
 					<label class="form-card__label" for="razon_reporte">Razon del reporte:</label>
 					<select name="razon_reporte">
-                        <option value="1">Irrespeto con el vendedor</option>
-                        <option value="2">No pagó</option>
-                        <option value="3">No se encontraba en el lugar de pedido</option>
-                        <option value="4">Canceló el servicio despues de haberse comenzado el proceso</option>
+                        <option value="1">Irrespeto con el comprador</option>
+                        <option value="2">No ofreció el producto</option>
+                        <option value="3">No se encontraba en el lugar de venta</option>
+                        <option value="4">Se negó a vender el producto</option>
                     </select>
 				</div>
 
                 <div class="form-card__group">
-					<label class="form-card__label" for="descripcion_producto">Descripcion:</label>
+					<label class="form-card__label" for="descripcion_producto">Descripción:</label>
                     <textarea id="descripcion_reporte_vendedor" name="descripcion_reporte_vendedor" rows="4" cols="50"></textarea>
 				</div>
 
