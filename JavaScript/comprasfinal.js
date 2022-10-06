@@ -102,6 +102,6 @@ function loadHtml(){
         amountProduct.innerHTML = countProduct;
     });
 }
- function clearHtml(){
+function clearHtml(){
     containerBuyCart.innerHTML = '';
- }
+}

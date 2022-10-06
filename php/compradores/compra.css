@@ -1,0 +1,31 @@
+img{
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    position: relative;
+    background-color: white;
+    top: -200px;
+}
+
+.container{
+    max-width: 1068px;
+    margin: auto;
+    width: 100%;
+}
+
+.logo{
+    font-size: 1.1rem;
+    color: red;
+    font-weight: 400;
+}
+
+
+#icon-cart{
+    font-size: 1.8rem;
+    cursor: pointer;
+}
