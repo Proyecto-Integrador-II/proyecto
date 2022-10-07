@@ -86,17 +86,6 @@
                         <h2 class="carta-title">Your cart</h2>
 
                         <div class="carta-content">
-                            <div class="carta-box">
-                                <img src="1.jpg" alt="" class="carta-img">
-                                <div class="detalles-box">
-                                    <div class="carta-product-title">Si</div>
-                                    <div class="carta-price">$25</div>
-                                    <input type="number" value="1" class="carta-quantity">
-                                </div>
-
-                                <i class='bx bx-trash-alt carta-remove' ></i>
-
-                            </div>
                         </div>
                         <div class="total">
                             <div class="title-total">Total</div>
@@ -118,6 +107,13 @@
                         <img src="1.jpg" alt="" class="product-img" >
                         <h2 class="product-title">Prueba</h2>
                         <span class="price">$24</span>
+                        <i class='bx bx-shopping-bag cart-add'></i>
+                    </div>
+                            <!-- box 2 -->
+                    <div class="product-box">
+                        <img src="1.jpg" alt="" class="product-img" >
+                        <h2 class="product-title">Prueba1</h2>
+                        <span class="price">$100</span>
                         <i class='bx bx-shopping-bag cart-add'></i>
                     </div>
 
@@ -155,6 +151,11 @@
                     var input = quantityInputs[i]
                     input.addEventListener('change', quantitychanged);
                 }
+                var addCart = document.getElementsByClassName('cart-add')
+                for(var i = 0; i<addCart.length; i++){
+                    var button = addCart[i];
+                    button.addEventListener('click', addCartClicked);
+                }
             }
 
 
@@ -174,6 +175,42 @@
             }
 
 
+            function addCartClicked(event){
+                var button = event.target
+                var shopProducts = button.parentElement
+                var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
+                var price = shopProducts.getElementsByClassName('price')[0].innerText;
+                var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
+                addProductToCart(title, price,productImg);
+                updatetotal();
+            }
+
+            function addProductToCart(title, price,productImg){
+                var cartShopBox = document.createElement('div');
+                cartShopbox.classList.add('carta-box');
+                var cartItems = document.getElementsByClassName('carta-content')[0];
+                var cartItemsNames =cartItems.getElementsByClassName('carta-product-title');
+                for(var i = 0; i<cartItemsNames.length; i++){
+                    if(cartItemsNames[i].innerText == title){
+                        alert('Ya agregaste al carrito este producto!');
+                        return;
+                        console.log(cartItemsNames)
+                    }
+                }
+            }
+            var cartBoxContent=`
+                                <img src="1.jpg" alt="" class="carta-img">
+                                <div class="detalles-box">
+                                    <div class="carta-product-title">Si</div>
+                                    <div class="carta-price">$25</div>
+                                    <input type="number" value="1" class="carta-quantity">
+                                </div>
+
+                                <i class='bx bx-trash-alt carta-remove' ></i>`;
+cartShopBox.innetHTML = cartBoxContent
+cartItems.append(cartShopBox)
+cartShopBox.getElementsByClassName('carta-remove')[0].addEventListener('click', removeCartIcon)
+cartShopBox.getElementsByClassName('carta-quantity')[0].addEventListener('change', quantitychanged)
 
             function updatetotal(){
                 var cartContent = document.getElementsByClassName('carta-content')[0];
@@ -186,6 +223,8 @@
                     var price = parseFloat(priceElement.innerText.replace('$',''));
                     var quantity = quiantityElement.value;
                     total= total + (price * quantity);
+
+                    total = Math.round(total * 100)/ 100;
 
                     document.getElementsByClassName('price-total')[0].innerText = '$' + total;
                 }
