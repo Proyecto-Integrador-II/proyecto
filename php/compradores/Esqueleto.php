@@ -48,7 +48,7 @@
                                 <h3 class="product-title"><?php echo $data['nombre'] ?></h3>
                                 <p class="price"><?php echo $data['precio'] ?></p>
                                 <button class="btn btn--orange btn--block product__cart-button" data-product-id="<?php echo $data['codproducto'] ?>" type="button">
-                                    <i class="fa-solid fa-basket-shopping cart-add" id="carrito" ></i></button>
+                                    <i class="fa-solid fa-basket-shopping cart-add" id="carrito" >Carrito</i></button>
                             </article>
                         <?php } ?>
                     <?php } ?>
