@@ -44,11 +44,11 @@
                         {
                 ?>
                             <article class="product" data-id="<?php echo $data['codproducto'] ?>">
-                                <img class="product__image" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
-                                <h3 class="product__title"><?php echo $data['nombre'] ?></h3>
-                                <p class="product__price"><?php echo $data['precio'] ?></p>
+                                <img class="product-img" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
+                                <h3 class="product-title"><?php echo $data['nombre'] ?></h3>
+                                <p class="price"><?php echo $data['precio'] ?></p>
                                 <button class="btn btn--orange btn--block product__cart-button" data-product-id="<?php echo $data['codproducto'] ?>" type="button">
-                                    <i class="fa-solid fa-basket-shopping" id="carrito" ></i>Añadir a la canasta</button>
+                                    <i class="fa-solid fa-basket-shopping cart-add" id="carrito" ></i></button>
                             </article>
                         <?php } ?>
                     <?php } ?>
@@ -78,21 +78,22 @@
         <!-- ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
         <div>
             <div class="nav container">
-                <a href="" class="logo">Carrito</a>
+                <a href="" class="logo"></a>
                 <!-- ICON CART -->
                 <i class='bx bxs-shopping-bag' id="icon-cart"></i>
                 <!-- CART -->
                 <div class="carta">
-                        <h2 class="carta-title">Your cart</h2>
+                        <h2 class="carta-title">Tú carrito!</h2>
 
                         <div class="carta-content">
+
                         </div>
                         <div class="total">
-                            <div class="title-total">Total</div>
+                            <div class="title-total">Valor total :</div>
                             <div class="price-total">$0</div>
                         </div>
 
-                        <button type="button" class="btn-buy">Buy</button>
+                        <button type="button" class="btn-buy">Eres una increible persona!</button>
 
                         <i class='bx bxs-shield-x' id="close-cart" ></i>
                 </div>
@@ -100,23 +101,15 @@
         </div>
 
         <section class="shop container">
-                <h2 class="section-title">Shop</h2>
+                <h2 class="section-title"></h2>
                 <div class="shop-content">
                     <!-- box 1 -->
                     <div class="product-box">
-                        <img src="1.jpg" alt="" class="product-img" >
-                        <h2 class="product-title">Prueba</h2>
-                        <span class="price">$24</span>
+                        <img src="empa.jpg" alt="" class="product-img" >
+                        <h2 class="product-title">Empanada</h2>
+                        <span class="price">$15000</span>
                         <i class='bx bx-shopping-bag cart-add'></i>
-                    </div>
-                            <!-- box 2 -->
-                    <div class="product-box">
-                        <img src="1.jpg" alt="" class="product-img" >
-                        <h2 class="product-title">Prueba1</h2>
-                        <span class="price">$100</span>
-                        <i class='bx bx-shopping-bag cart-add'></i>
-                    </div>
-
+                    </div> 
 
                 </div>
         </section>
@@ -144,7 +137,7 @@
                 var removeCartButtons = document.getElementsByClassName('carta-remove')
                 for(var i = 0; i<removeCartButtons.length; i++){
                     var button = removeCartButtons[i]
-                    button.addEventListener('click' ,removeCartIcon)
+                    button.addEventListener('click' ,removeCartItem)
                 }
                 var quantityInputs = document.getElementsByClassName('carta-quantity');
                 for (var i = 0; i<quantityInputs.length; i++){
@@ -159,8 +152,7 @@
             }
 
 
-            function removeCartIcon(event){
-                console.log(removeCartIcon)
+            function removeCartItem(event){
                 var buttonClicked = event.target;
                 buttonClicked.parentElement.remove();
                 updatetotal();
@@ -176,8 +168,8 @@
 
 
             function addCartClicked(event){
-                var button = event.target
-                var shopProducts = button.parentElement
+                var button = event.target;
+                var shopProducts = button.parentElement;
                 var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
                 var price = shopProducts.getElementsByClassName('price')[0].innerText;
                 var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
@@ -185,9 +177,9 @@
                 updatetotal();
             }
 
-            function addProductToCart(title, price,productImg){
+            function addProductToCart(title, price, productImg){
                 var cartShopBox = document.createElement('div');
-                cartShopbox.classList.add('carta-box');
+                    cartShopBox.classList.add('carta-box');
                 var cartItems = document.getElementsByClassName('carta-content')[0];
                 var cartItemsNames =cartItems.getElementsByClassName('carta-product-title');
                 for(var i = 0; i<cartItemsNames.length; i++){
@@ -197,20 +189,24 @@
                         console.log(cartItemsNames)
                     }
                 }
-            }
+            
             var cartBoxContent=`
-                                <img src="1.jpg" alt="" class="carta-img">
+                                <img src="${productImg}" alt="" class="carta-img">
                                 <div class="detalles-box">
-                                    <div class="carta-product-title">Si</div>
-                                    <div class="carta-price">$25</div>
-                                    <input type="number" value="1" class="carta-quantity">
+                                <div class="carta-product-title">${title}</div>
+                                <div class="carta-price">${price}</div>
+                                <input type="number" value="1" class="carta-quantity">
                                 </div>
-
                                 <i class='bx bx-trash-alt carta-remove' ></i>`;
-cartShopBox.innetHTML = cartBoxContent
-cartItems.append(cartShopBox)
-cartShopBox.getElementsByClassName('carta-remove')[0].addEventListener('click', removeCartIcon)
-cartShopBox.getElementsByClassName('carta-quantity')[0].addEventListener('change', quantitychanged)
+cartShopBox.innerHTML = cartBoxContent;
+cartItems.append(cartShopBox);
+
+cartShopBox.getElementsByClassName('carta-remove')[0]
+.addEventListener('click', removeCartItem);
+cartShopBox.getElementsByClassName('carta-quantity')[0]
+.addEventListener('change', quantitychanged);
+
+}
 
             function updatetotal(){
                 var cartContent = document.getElementsByClassName('carta-content')[0];
@@ -223,24 +219,42 @@ cartShopBox.getElementsByClassName('carta-quantity')[0].addEventListener('change
                     var price = parseFloat(priceElement.innerText.replace('$',''));
                     var quantity = quiantityElement.value;
                     total= total + (price * quantity);
-
+                }
                     total = Math.round(total * 100)/ 100;
 
                     document.getElementsByClassName('price-total')[0].innerText = '$' + total;
-                }
+                
             }
+
 
 
         </script>
 
 
+    <style>
+    .carta{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 360px;
+        min-height: 100vh;
+        padding: 20px;
+        background-color: white;
+        box-shadow: -2px 0 4px hsl(0, 4%, 15% /10%);
+        transition: 0.3s;
+    }
 
+    .carta.active{
+        right: 0;
+    }
+    .title-total{
+        font-size: 20px;
+    }
 
-
-
-
-
-
+    .price-total{
+        font-size: 20px;
+    }
+</style>
 
 
 

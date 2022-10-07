@@ -76,13 +76,14 @@ img{
 .carta{
     position: fixed;
     top: 0;
-    right: 0;
+    right: -100%;
     width: 360px;
     min-height: 100vh;
     padding: 20px;
     background-color: white;
     box-shadow: -2px 0 4px hsl(0, 4%, 15% /10%);
     transition: 0.3s;
+    background-color: aqua;
 }
 
 .carta.active{
