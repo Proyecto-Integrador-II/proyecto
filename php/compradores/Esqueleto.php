@@ -6,11 +6,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php include '../includes/scripts.php' ?>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <script src="../../JavaScript/carritocompras.js"></script>
+        <script src="../../JavaScript/comprasfinal.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
+        <link rel="stylesheet" href="./compra.css">
+        <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     
     <body>
@@ -39,11 +44,11 @@
                         {
                 ?>
                             <article class="product" data-id="<?php echo $data['codproducto'] ?>">
-                                <img class="product__image" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
-                                <h3 class="product__title"><?php echo $data['nombre'] ?></h3>
-                                <p class="product__price"><?php echo $data['precio'] ?></p>
+                                <img class="product-img" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
+                                <h3 class="product-title"><?php echo $data['nombre'] ?></h3>
+                                <p class="price"><?php echo $data['precio'] ?></p>
                                 <button class="btn btn--orange btn--block product__cart-button" data-product-id="<?php echo $data['codproducto'] ?>" type="button">
-                                    <i class="fa-solid fa-basket-shopping" id="carrito" ></i>Añadir a la canasta</button>
+                                    <i class="fa-solid fa-basket-shopping cart-add" id="carrito" >Carrito</i></button>
                             </article>
                         <?php } ?>
                     <?php } ?>
@@ -69,127 +74,206 @@
             </div>
         </div>
 
-    <!-- header 
-        <div class="nav container">
-            <a href="#" class="logo"></a>
-            <svg id="cart-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="arriba"
-                viewBox="0 0 16 16"
-                >
-                <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
-                />
-                </svg>
-            <div class="cart">
-                <h2 class="cart-title">Your Cart</h2>
-                Content
-                <div class="cart-content">
-                        <div class="cart-box">
-                            <img src="1.jpg" width="100px" height="100px" alt="" class="cart-img">
-                            <div class="detail-box">
-                                <div class="cart-product-title">Ear</div>
-                                <div class="cart-price">$25</div>
-                                <input type="number" value="1" class="cart-quantity">
-                            </div>
-                            Remove
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill cart-remove"  viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                            </svg>
-                        </div>
-                </div>
-                Total
-                <div class="total">
-                    <div class="total-title">Total</div>
-                    <div class="total-price">$0</div>
-                </div>
-                Buy Button 
-                <button type="button" class="btn-buy">Buy</button>
-                Cart Close             
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-file-excel-fill" id="close-cart" viewBox="0 0 16 16">
-                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.884 4.68 8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 1 1 .768-.64z"/>
-                </svg>
-
-            </div>
-        </div>
-
-    Shop
-    <section id="section1" class="shop container">
-        <h2 class="section-title">Shop Products</h2>
-        content
-        <div class="shop-content">
-                    Box 1
-                    <div class="product-box">
-                        <img src="1.jpg" alt="" class="product-img">
-                        <h2 class="product-title">Ejemplo1</h2>
-                        <span class="price">$251</span>
-                        <i class="fa-solid fa-basket-shopping add-cart"  ></i></button>
-                    </div>
-                                        Box 2
-                                        <div class="product-box">
-                        <img src="1.jpg" alt="" class="product-img">
-                        <h2 class="product-title">Ejemplo2</h2>
-                        <span class="price">$252</span>
-                        <i class="fa-solid fa-basket-shopping add-cart"  ></i></button>
-                    </div>
-                                        Box 3
-                                        <div class="product-box">
-                        <img src="1.jpg" alt="" class="product-img">
-                        <h2 class="product-title">Ejemplo3</h2>
-                        <span class="price">$253</span>
-                        <i class="fa-solid fa-basket-shopping add-cart"  ></i></button>
-                    </div>
-                                        Box 4
-                                        <div class="product-box">
-                        <img src="1.jpg" alt="" class="product-img">
-                        <h2 class="product-title">Ejemplo4</h2>
-                        <span class="price">$254</span>
-                        <i class="fa-solid fa-basket-shopping add-cart"  ></i></button>
-                    </div>
-                    
-        </div>
-    </section>-->
-
-    <!--
-        <div class="pt-5 text-center">
-            <h1>Prueba</h1>
-        </div>      
-        <div class="contenedorpro pt-5">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="card" style="width: 18rem;">
-                    <img src="1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Prueba</h5>
-                                <p class="card-text">$500</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="card" style="width: 18rem;">
-                    <img src="1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Prueba</h5>
-                                <p class="card-text">$500</p>
-                                <a href="#" class="btn btn-primary"><i class="icon ion-md-cart"></i></a>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
         
-        <div id="contenedor-productos">
-                
+        <!-- ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+        <div>
+            <div class="nav container">
+                <a href="" class="logo"></a>
+                <!-- ICON CART -->
+                <i class='bx bxs-shopping-bag' id="icon-cart"></i>
+                <!-- CART -->
+                <div class="carta">
+                        <h2 class="carta-title">Tú carrito!</h2>
+
+                        <div class="carta-content">
+
+                        </div>
+                        <div class="total">
+                            <div class="title-total">Valor total :</div>
+                            <div class="price-total">$0</div>
+                        </div>
+
+                        <button type="button" class="btn-buy">Eres una increible persona!</button>
+
+                        <i class='bx bxs-shield-x' id="close-cart" ></i>
+                </div>
+            </div>
         </div>
 
+        <section class="shop container">
+                <h2 class="section-title"></h2>
+                <div class="shop-content">
+                    <!-- box 1 -->
+                    <div class="product-box">
+                        <img src="empa.jpg" alt="" class="product-img" >
+                        <h2 class="product-title">Empanada</h2>
+                        <span class="price">$15000</span>
+                        <i class='bx bx-shopping-bag cart-add'></i>
+                    </div> 
+
+                </div>
+        </section>
+
+        <script>
+            let cartIcon = document.querySelector('#icon-cart');
+            let cart = document.querySelector('.carta');
+            let closeCart = document.querySelector('#close-cart');
+
+            cartIcon.onclick = () =>{
+                cart.classList.add('active')
+            };
+
+            closeCart.onclick = () =>{
+                cart.classList.remove('active')
+            };
+
+            if (document.readyState == 'loading'){
+                document.addEventListener('DOMContentLoaded', ready)
+            }else{
+                ready();
+            }
+
+            function ready(){
+                var removeCartButtons = document.getElementsByClassName('carta-remove')
+                for(var i = 0; i<removeCartButtons.length; i++){
+                    var button = removeCartButtons[i]
+                    button.addEventListener('click' ,removeCartItem)
+                }
+                var quantityInputs = document.getElementsByClassName('carta-quantity');
+                for (var i = 0; i<quantityInputs.length; i++){
+                    var input = quantityInputs[i]
+                    input.addEventListener('change', quantitychanged);
+                }
+                var addCart = document.getElementsByClassName('cart-add')
+                for(var i = 0; i<addCart.length; i++){
+                    var button = addCart[i];
+                    button.addEventListener('click', addCartClicked);
+                }
+            }
+
+
+            function removeCartItem(event){
+                var buttonClicked = event.target;
+                buttonClicked.parentElement.remove();
+                updatetotal();
+            }
+
+            function quantitychanged(event){
+                var input = event.target
+                if (isNaN(input.value) || input.value <= 0){
+                    input.value = 1;
+                };
+                updatetotal();
+            }
+
+
+            function addCartClicked(event){
+                var button = event.target;
+                var shopProducts = button.parentElement;
+                var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
+                var price = shopProducts.getElementsByClassName('price')[0].innerText;
+                var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
+                addProductToCart(title, price,productImg);
+                updatetotal();
+            }
+
+            function addProductToCart(title, price, productImg){
+                var cartShopBox = document.createElement('div');
+                    cartShopBox.classList.add('carta-box');
+                var cartItems = document.getElementsByClassName('carta-content')[0];
+                var cartItemsNames =cartItems.getElementsByClassName('carta-product-title');
+                for(var i = 0; i<cartItemsNames.length; i++){
+                    if(cartItemsNames[i].innerText == title){
+                        alert('Ya agregaste al carrito este producto!');
+                        return;
+                        console.log(cartItemsNames)
+                    }
+                }
+            
+            var cartBoxContent=`
+                                <img src="${productImg}" alt="" class="carta-img">
+                                <div class="detalles-box">
+                                <div class="carta-product-title">${title}</div>
+                                <div class="carta-price">${price}</div>
+                                <input type="number" value="1" class="carta-quantity">
+                                </div>
+                                <i class='bx bx-trash-alt carta-remove' ></i>`;
+cartShopBox.innerHTML = cartBoxContent;
+cartItems.append(cartShopBox);
+
+cartShopBox.getElementsByClassName('carta-remove')[0]
+.addEventListener('click', removeCartItem);
+cartShopBox.getElementsByClassName('carta-quantity')[0]
+.addEventListener('change', quantitychanged);
+
+}
+
+            function updatetotal(){
+                var cartContent = document.getElementsByClassName('carta-content')[0];
+                var cartBoxes = cartContent.getElementsByClassName('carta-box');
+                var total = 0;
+                for(var i = 0; i<cartBoxes.length; i++){
+                    var cartBox = cartBoxes[i];
+                    var priceElement = cartBox.getElementsByClassName('carta-price')[0];
+                    var quiantityElement = cartBox.getElementsByClassName('carta-quantity')[0];
+                    var price = parseFloat(priceElement.innerText.replace('$',''));
+                    var quantity = quiantityElement.value;
+                    total= total + (price * quantity);
+                }
+                    total = Math.round(total * 100)/ 100;
+
+                    document.getElementsByClassName('price-total')[0].innerText = '$' + total;
+                
+            }
 
 
 
+        </script>
+
+
+    <style>
+    .carta{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 360px;
+        min-height: 100vh;
+        padding: 20px;
+        background-color: white;
+        box-shadow: -2px 0 4px hsl(0, 4%, 15% /10%);
+        transition: 0.3s;
+    }
+
+    .carta.active{
+        right: 0;
+    }
+    .title-total{
+        font-size: 20px;
+    }
+
+    .price-total{
+        font-size: 20px;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </body>
 </html>
