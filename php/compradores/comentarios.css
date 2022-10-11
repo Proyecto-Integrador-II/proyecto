@@ -1,0 +1,30 @@
+body{
+    text-align: center;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 1.8rem;
+    z-index: -100;
+}
+
+#h2{
+    font-size: 60px;
+}
+
+#boton{
+    background-color: orange;
+    width: 100px;
+    position: relative;
+    left: 610px;
+}
+
+#nombre{
+    padding: 20px 20px;
+    border: 2px solid black;
+}
+
+#area{
+    border: 2px solid black;
+}
+
+#nombre1, #comentario1{
+    font-size: 30px;
+}

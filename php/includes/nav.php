@@ -60,6 +60,13 @@
             </ul>
         </li>
 
+        <li class="principal">
+            <a href="#">Comentarios</a>
+            <ul>
+                <li><a href="comentarioscompradores.php">Comentario Productos</a></li>
+            </ul>
+        </li>
+
     <?php } ?>
     </ul>
 </nav>

@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Comentarios</title>
-
+    <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<?php include '../includes/scripts.php' ?>
+        <link rel="stylesheet" href="comentarios.css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" />
-        <link href="es.css" rel="stylesheet" />
     </head>
     <body>
+    <?php 
+		include '../includes/header.php';
+		if(empty($_SESSION['active']) || ($_SESSION['user'] !=3))
+		{
+			header('Location: ../todos/logout.php');
+		}  
+		?>
         <!-- Comentario section-->
         <form method="POST" action="./php/enviarcomentario.php">
             <section id="contact">
                 <div class="container px-4">
                     <div class="row gx-4 justify-content-center">
                         <div class="col-lg-8">
-                            <h2>Comentarios</h2>
+                            <h2 id="h2">Comentarios</h2>
                             <br>
-                            <p class="lead">Has un comentario
-                            </p>
                                 <br>
     
                                 <div class="col-xs-12">
@@ -29,25 +31,24 @@
 
                                     <br>
                                 <div class="form-group">
-                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <label id="nombre1" for="nombre" class="form-label">Nombre</label>
                                     <input class="form-control" name="nombre" type="text" id="nombre" placeholder="Escribe tu nombre" required >
                                     </div>
                             
                                     
-                            <br>
                                     <div class="form-group">
-                                    <label for="comentario" class="form-label">Comentario:</label>
-                                    <textarea class="form-control" name="comentario" cols="30" rows="5" type="text" id="comentario" 
+                                    <label id="comentario1" for="comentario" class="form-label">Comentario:</label>
+                                    <textarea id="area" required class="form-control" name="comentario" cols="30" rows="10" type="text" id="comentario" 
                                     placeholder="Escribe tu comentario......"></textarea>
                                     </div>
                             <br>
-                            <input class="btn btn-primary" type="submit"  value="Enviar Comentario">
+                            <input class="btn btn-primary" id="boton" type="submit"  value="Enviar Comentario">
                             <br>
                             <br>
                             <br>
                                     <?php
 
-$conexion=mysqli_connect("localhost","root","","proyecto2"); 
+$conexion=mysqli_connect("localhost","root","upb2021","proyecto2"); 
 $resultado= mysqli_query($conexion, 'SELECT * FROM comentarios');
 
 while($comentario = mysqli_fetch_object($resultado)){

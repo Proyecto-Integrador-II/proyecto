@@ -9870,6 +9870,12 @@ textarea.form-control-lg {
     padding-bottom: 0 !important;
   }
 
+  .btn btn-primary{
+    background-color: red;
+  }
+
+
+
   .pb-lg-1 {
     padding-bottom: 0.25rem !important;
   }
