@@ -10,7 +10,7 @@ if(!empty($sessData['status']['msg'])){
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registro de Usuario, Login y Cambio de Contraseña en PHP y MySQL</title>
+    <title>Cambiar contraseña</title>
     <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" 	type="text/css" media="all">
 </head>

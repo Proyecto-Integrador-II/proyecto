@@ -93,12 +93,12 @@ h2 {
     border: none;
     outline: none;
     color: #FFF;
-    background-color: #2196F3;
+    background-color: orange;
     cursor: pointer;
 }
 
 .send-button input[type="submit"]:hover {
-    background-color: #055d54;
+    background-color: #757575;
 }
 
 a.logout{float: right;}

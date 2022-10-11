@@ -46,7 +46,7 @@
 					</p>
 				</div>
 
-				<a href="correocontraseña.php" class="form-card__redirection">¿Has olvidado tu contraseña?</a>
+				<a href="contraseñaperdida.php" class="form-card__redirection">¿Has olvidado tu contraseña?</a>
 				<div class="cl"></div>
 				<a href="./signup.php" class="form-card__redirection">Crea una nueva cuenta.</a>
 				<div class="cl"></div>
