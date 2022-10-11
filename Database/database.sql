@@ -113,6 +113,50 @@ INSERT INTO `reporte` (`id`, `id_razon`, `id_reportado`, `reporte`, `foto`) VALU
 
 -- --------------------------------------------------------
 
+
+-- Reportes vendedores
+
+--
+-- Estructura de tabla para la tabla `razones_reporte del vendedor`
+--
+
+CREATE TABLE `razones_reporte_vendedor` (
+  `id` int(11) NOT NULL,
+  `tipo_reporte` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Inserción de datos para la tabla `razones_reporte del vendedor`
+--
+
+INSERT INTO `razones_reporte_vendedor` (`id`, `tipo_reporte`) VALUES
+(1, 'Irrespeto con el vendedor'),
+(2, 'No pagó'),
+(3, 'No se encontraba en el lugar de pedido'),
+(4, 'Canceló el servicio despues de haberse comenzado el proceso');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reporte` del vendedor
+--
+
+CREATE TABLE `reporte_vendedor` (
+  `id` int(11) NOT NULL,
+  `id_razon` int(11) NOT NULL,
+  `id_reportado` int(11) NOT NULL,
+  `reporte` varchar(1000) NOT NULL,
+  `foto` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Inserción de datos para la tabla `reporte del vendedor`
+--
+
+INSERT INTO `reporte_vendedor` (`id`, `id_razon`, `id_reportado`, `reporte`, `foto`) VALUES
+(24, 1, 16, 'Me insulto', 'img_bb66cedd661f592b6a9bbe7c3630a7b3.png');
+
+-- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `rol`
 --
@@ -204,6 +248,19 @@ ALTER TABLE `reporte`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_razon` (`id_razon`),
   ADD KEY `id_reportado` (`id_reportado`);
+--
+-- Indices de la tabla `razones_reporte del vendedor`
+--
+ALTER TABLE `razones_reporte_vendedor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `reporte del vendedor`
+--
+ALTER TABLE `reporte_vendedor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_razon` (`id_razon`),
+  ADD KEY `id_reportado` (`id_reportado`);
 
 --
 -- Indices de la tabla `rol`
@@ -247,6 +304,18 @@ ALTER TABLE `reporte`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `razones_reporte del vendedor`
+--
+ALTER TABLE `razones_reporte_vendedor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `reporte del vendedor`
+--
+ALTER TABLE `reporte_vendedor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
@@ -274,6 +343,13 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `reporte`
   ADD CONSTRAINT `FK_reporte_razones_reporte` FOREIGN KEY (`id_razon`) REFERENCES `razones_reporte` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_reporte_usuario` FOREIGN KEY (`id_reportado`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reporte del vendedor`
+--
+ALTER TABLE `reporte_vendedor`
+  ADD CONSTRAINT `FK_reporte_razones_reporte` FOREIGN KEY (`id_razon`) REFERENCES `razones_reporte_vendedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_reporte_usuario` FOREIGN KEY (`id_reportado`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
