@@ -69,8 +69,10 @@ INSERT INTO `producto` (`codproducto`, `nombre`, `precio`, `lugar`, `descripcion
 
 -- --------------------------------------------------------
 
+-- Reportes compradores
+
 --
--- Estructura de tabla para la tabla `razones_reporte`
+-- Estructura de tabla para la tabla `razones_reporte del comprador`
 --
 
 CREATE TABLE `razones_reporte` (
@@ -79,7 +81,7 @@ CREATE TABLE `razones_reporte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Volcado de datos para la tabla `razones_reporte`
+-- Volcado de datos para la tabla `razones_reporte del comprador`
 --
 
 INSERT INTO `razones_reporte` (`id`, `tipo_reporte`) VALUES
@@ -91,7 +93,7 @@ INSERT INTO `razones_reporte` (`id`, `tipo_reporte`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reporte`
+-- Estructura de tabla para la tabla `reporte` del comprador
 --
 
 CREATE TABLE `reporte` (
@@ -103,7 +105,7 @@ CREATE TABLE `reporte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Volcado de datos para la tabla `reporte`
+-- Volcado de datos para la tabla `reporte del comprador`
 --
 
 INSERT INTO `reporte` (`id`, `id_razon`, `id_reportado`, `reporte`, `foto`) VALUES
@@ -190,13 +192,13 @@ ALTER TABLE `producto`
   ADD KEY `lugar` (`lugar`);
 
 --
--- Indices de la tabla `razones_reporte`
+-- Indices de la tabla `razones_reporte del comprador`
 --
 ALTER TABLE `razones_reporte`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `reporte`
+-- Indices de la tabla `reporte del comprador`
 --
 ALTER TABLE `reporte`
   ADD PRIMARY KEY (`id`),
@@ -233,13 +235,13 @@ ALTER TABLE `producto`
   MODIFY `codproducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `razones_reporte`
+-- AUTO_INCREMENT de la tabla `razones_reporte del comprador`
 --
 ALTER TABLE `razones_reporte`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `reporte`
+-- AUTO_INCREMENT de la tabla `reporte del comprador`
 --
 ALTER TABLE `reporte`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
@@ -268,7 +270,7 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`proveedor`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `reporte`
+-- Filtros para la tabla `reporte del comprador`
 --
 ALTER TABLE `reporte`
   ADD CONSTRAINT `FK_reporte_razones_reporte` FOREIGN KEY (`id_razon`) REFERENCES `razones_reporte` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
