@@ -53,8 +53,8 @@
 				</div>
 
                 <div class="form-card__group">
-					<label class="form-card__label" for="razon_reporte">Razón del reporte:</label>
-					<select name="razon_reporte">
+					<label class="form-card__label" for="razon_reporte_vendedor">Razón del reporte:</label>
+					<select name="razon_reporte_vendedor">
                         <option value="1">Irrespeto con el comprador</option>
                         <option value="2">No ofreció el producto</option>
                         <option value="3">No se encontraba en el lugar de venta</option>
@@ -91,23 +91,23 @@
 if(!empty($_POST))
 {
 	$alert='';
-	if(empty($_POST['razon_reporte']) || empty($_POST['descripcion_reporte_vendedor']))
+	if(empty($_POST['razon_reporte_vendedor']) || empty($_POST['descripcion_reporte_vendedor']))
 	{
 		echo 'Todos los campos son obligatorios';
 	}else{
 		$descripcion_reporte_vendedor = $_POST['descripcion_reporte_vendedor']; ;
 
-		if($_REQUEST['razon_reporte'] == '1'){
-			$razon_reporte = 1;
+		if($_REQUEST['razon_reporte_vendedor'] == '1'){
+			$razon_reporte_vendedor = 1;
 		}
-		else if($_REQUEST['razon_reporte'] == '2'){
-			$razon_reporte = 2;
+		else if($_REQUEST['razon_reporte_vendedor'] == '2'){
+			$razon_reporte_vendedor = 2;
 		}
-		else if($_REQUEST['razon_reporte'] == '3'){
-			$razon_reporte = 3;
+		else if($_REQUEST['razon_reporte_vendedor'] == '3'){
+			$razon_reporte_vendedor = 3;
 		}
-		else if($_REQUEST['razon_reporte'] == '4'){
-			$razon_reporte = 4;
+		else if($_REQUEST['razon_reporte_vendedor'] == '4'){
+			$razon_reporte_vendedor = 4;
 		}
 
 		$idUsuario = $_POST['idUsuario'];
@@ -119,12 +119,12 @@ if(!empty($_POST))
 
 		if($nombre_foto != '')
 		{
-			$destino = '../../img/reports/';
+			$destino = '../../img/reports_seller/';
 			$img_nombre = 'img_'.md5(date('d-m-Y H:i:s'));
 			$imgReseña = $img_nombre.'.png';
 			$src = $destino.$imgReseña;
 		}
-		$query_insert = mysqli_query($conection,"INSERT INTO reporte(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_vendedor','$imgReseña')");	
+		$query_insert = mysqli_query($conection,"INSERT INTO reporte_vendedor(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_vendedor','$imgReseña')");	
 		
 		if($query_insert)
 		{
