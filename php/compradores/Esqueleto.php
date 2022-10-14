@@ -12,8 +12,10 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="buscador.js"></script>
         <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
         <link rel="stylesheet" href="./compra.css">
+        <link rel="stylesheet" href="buscar.css">
         <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
@@ -28,9 +30,9 @@
             require_once '../todos/conexion.php';
             ?>
         <div class="container">
-            <form action="buscar_productos.php" method="GET" class="form_search">
+            <form action="" method="GET" class="form_search">
 				<input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
-				<input type="submit" value="Buscar" class="btn_search">
+				<!-- <input type="submit" value="Buscar" class="btn_search"> -->
 			</form>
             <section class="container products" id="productsSection">
                 <?php 
@@ -43,12 +45,12 @@
                         while ($data = mysqli_fetch_array($query))
                         {
                 ?>
-                            <article class="product" data-id="<?php echo $data['codproducto'] ?>">
-                                <img class="product-img" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
-                                <h3 class="product-title"><?php echo $data['nombre'] ?></h3>
-                                <p class="price"><?php echo $data['precio'] ?></p>
-                                <button class="btn btn--orange btn--block product__cart-button" data-product-id="<?php echo $data['codproducto'] ?>" type="button">
-                                    <i class="fa-solid fa-basket-shopping cart-add" id="carrito" >Carrito</i></button>
+                            <article id="buscar" class="product" data-id="<?php echo $data['codproducto'] ?>">
+                                <img id="buscar" class="product-img" alt="<?php echo $data['descripcion'] ?>" src="../../img/uploads/<?php echo $data['foto'] ?> ">
+                                <h3  id="buscar" class="product-title"><?php echo $data['nombre'] ?></h3>
+                                <p id="buscar"  class="price"><?php echo $data['precio'] ?></p>
+                                <button id="buscar" class="btn btn--orange btn--block product__cart-button" data-product-id="<?php echo $data['codproducto'] ?>" type="button">
+                                    <i id="buscar" class="fa-solid fa-basket-shopping cart-add" id="carrito" >Carrito</i></button>
                             </article>
                         <?php } ?>
                     <?php } ?>
