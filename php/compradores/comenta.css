@@ -1,0 +1,41 @@
+body{
+    background-color: #ededed;
+}
+
+.contact{
+    position: relative;
+    top: 150px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#unordered{
+    background-color: orange;
+    font-size: 30px;
+    font-weight: 100;
+    border-color: black;
+}
+
+#comment-box{
+    font-size: 20px;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    position: relative;
+    left: 670px;
+    border-color: black;
+    border-radius: 222px solid black;
+}
+
+#post{
+    font-size: 20px;
+    cursor: pointer;
+    background-color:azure;
+    border-radius: 7px;
+    padding: 8px 10px;
+    position: relative;
+    left: 820PX;
+    top: 2px;
+}
