@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="contraseña.css">    
+    <link rel="stylesheet" href="contraseña.css">  
+    <link rel="stylesheet" href="botones.css">  
     <title>Contraseña-Perdida</title>
 </head>
 <body>
@@ -17,10 +18,8 @@
                         Recuperar Contraseña
                     </h2>
                     <input type="email"  placeholder="Correo Electronico" required>
-                    <button>
-                        Enviar
-                    </button>
-                    <a  id="pregunta">¿Ya tienes una cuenta?</a>
+                    <input type="submit" id="enviar" value="Enviar" onclick="javascript: return confirm('¿Estás segur@?')";> </input>
+                    <a  id="pregunta">¿Ya tienes cuenta?</a>
                     <br>
                     <a id="contra" href="login.php">
                         Iniciar sesión

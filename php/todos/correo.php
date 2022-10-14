@@ -1,14 +1,13 @@
 <?php
-if (isset($_POST['enviar'])){
-    if(!empty($_POST['email'])){
-        $email=$_POST["email"];
-        $header ="From: noreply@example.com" . "\r\n";
-        $header.= "Reply-To: noreply@example.com" . "\r\n";
-        $header.="X-Mailer: PHP/".phpversion();
-        $mail = @mail($email,$header);
-        if($mail){
-            echo "<h4> Mail enviado exitosamente! </h4>";
-        }
-    }
+$paracorreo = "sololosproscomoyo@gmail.com";
+$titulo = "Test Correo";
+$mensaje = "Hola Mundo";
+$tucorreo = "from :awosutfm@gmail.com";
+
+if(mail($paracorreo,$titulo,$mensaje,$tucorreo))
+{
+    echo "Correo Enviado";
+}else{
+    echo "Error ERROR";
 }
 ?>
