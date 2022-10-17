@@ -14,5 +14,6 @@ if($nr == 1)
     $paracorreo = $correo;
     $titulo = "Recuperar password"
     $mensaje = "Tu password es: ".$enviarpass;
+    
 }
 ?>
