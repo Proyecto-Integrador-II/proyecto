@@ -1,0 +1,29 @@
+version: "3.3"
+
+networks:
+  app:
+    external: false
+
+services:
+  erp:
+    container_name: app
+    depends_on:
+      - database
+    user: 5000:5000
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    image: app
+    restart: unless-stopped
+    environment:
+      # - DB_HOST=IP_MYSQL_AZURE
+      # - DB_USERNAME=USUARIO
+      # - DB_PASSWORD=CONTRASEÑA
+      # - DB_DATABASE=NOMBRE_DE_BASEDATOS
+    volumes:
+      - ./app:/opt/app
+    networks:
+      - app
+    ports:
+      - 127.0.0.1:8000:8000
+
