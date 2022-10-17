@@ -56,9 +56,10 @@
 					<label class="form-card__label" for="razon_reporte_vendedor">Razón del reporte:</label>
 					<select name="razon_reporte_vendedor">
                         <option value="1">Irrespeto con el comprador</option>
-                        <option value="2">No ofreció el producto</option>
-                        <option value="3">No se encontraba en el lugar de venta</option>
-                        <option value="4">Se negó a vender el producto</option>
+                        <option value="2">no tenía sencillo</option>
+                        <option value="3">no llegó al lugar asignado</option>
+                        <option value="4">Canceló el servicio despues de haberse comenzado el proceso</option>
+						<option value="5">Se estaba comiendo mi pedido</option>
                     </select>
 				</div>
 
@@ -108,6 +109,9 @@ if(!empty($_POST))
 		}
 		else if($_REQUEST['razon_reporte_vendedor'] == '4'){
 			$razon_reporte_vendedor = 4;
+		}
+		else if($_REQUEST['razon_reporte_vendedor'] == '5'){
+			$razon_reporte_vendedor = 5;
 		}
 
 		$idUsuario = $_POST['idUsuario'];

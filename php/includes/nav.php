@@ -17,6 +17,7 @@
                 <li><a href="lista_productos.php">Lista de Productos</a></li>
             </ul>
         </li>
+        
     <?php } ?>
     <?php
         if($_SESSION['user'] == 2){
@@ -32,6 +33,12 @@
             <a href="#">Reportes</a>
             <ul>
                 <li><a href="lista_compradores.php">Reportar compradores</a></li>
+            </ul>
+        </li>
+        <li class="principal">
+            <a href="#">notificaciones</a>
+            <ul>
+                <li><a href="vista_de_reportes_vendedores.php">Reportes</a></li>
             </ul>
         </li>
     <?php } ?>
@@ -64,6 +71,12 @@
             <a href="#">Comentarios</a>
             <ul>
                 <li><a href="comentarioscompradores.php">Comentario Productos</a></li>
+            </ul>
+        </li>
+        <li class="principal">
+            <a href="#">notificaciones</a>
+            <ul>
+                <li><a href="vista_de_reportes_compradores.php">Reportes</a></li>
             </ul>
         </li>
 
