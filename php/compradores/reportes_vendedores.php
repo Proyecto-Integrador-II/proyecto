@@ -55,11 +55,11 @@
                 <div class="form-card__group">
 					<label class="form-card__label" for="razon_reporte_vendedor">Razón del reporte:</label>
 					<select name="razon_reporte_vendedor">
-                        <option value="1">Irrespeto con el comprador</option>
-                        <option value="2">no tenía sencillo</option>
-                        <option value="3">no llegó al lugar asignado</option>
-                        <option value="4">Canceló el servicio despues de haberse comenzado el proceso</option>
-						<option value="5">Se estaba comiendo mi pedido</option>
+                        <option value="1">Fue irrespetuoso</option>
+                        <option value="2">No ofreció el producto</option>
+                        <option value="3">No se encontraba en el lugar de pedido</option>
+                        <option value="4">El producto estaba en malas condiciones</option>
+						<option value="5">No tenía vueltos</option>
                     </select>
 				</div>
 
