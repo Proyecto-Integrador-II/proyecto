@@ -130,10 +130,12 @@ CREATE TABLE `razones_reporte_vendedor` (
 --
 
 INSERT INTO `razones_reporte_vendedor` (`id`, `tipo_reporte`) VALUES
-(1, 'Irrespeto con el vendedor'),
-(2, 'No pagó'),
+(1, 'Fue irrespetuoso'),
+(2, 'No ofreció el producto'),
 (3, 'No se encontraba en el lugar de pedido'),
-(4, 'Canceló el servicio despues de haberse comenzado el proceso');
+(4, 'El producto estaba en malas condiciones'),
+(5, 'No tenía vueltos');
+
 
 -- --------------------------------------------------------
 
