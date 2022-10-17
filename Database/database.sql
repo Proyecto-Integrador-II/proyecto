@@ -349,8 +349,8 @@ ALTER TABLE `reporte`
 -- Filtros para la tabla `reporte del vendedor`
 --
 ALTER TABLE `reporte_vendedor`
-  ADD CONSTRAINT `FK_reporte_razones_reporte` FOREIGN KEY (`id_razon`) REFERENCES `razones_reporte_vendedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reporte_usuario` FOREIGN KEY (`id_reportado`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_reporte_razones_reporte_vendedor` FOREIGN KEY (`id_razon`) REFERENCES `razones_reporte_vendedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_reporte_usuario_vendedor` FOREIGN KEY (`id_reportado`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
