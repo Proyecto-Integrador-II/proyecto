@@ -21,11 +21,12 @@
                 <tr>
                     <th>razon de reporte</th>
                     <th>comentario</th>
+					<th>Reportado</th>
                 </tr>
             <?php
 				require_once '../todos/conexion.php';
 				
-				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM reporte");
+				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM reporte_vendedor");
 				$result_register = mysqli_fetch_array($sql_registe);
 				$total_registro = $result_register['total_registro'];
 				$por_pagina = 50;
@@ -36,7 +37,7 @@
 				}
 				$desde = ($pagina-1)*$por_pagina;
 				$total_paginas = ceil($total_registro/$por_pagina);
-                $query = mysqli_query($conection, "SELECT r.reporte, v.tipo_reporte FROM reporte r INNER JOIN razones_reporte v on r.id = v.id ORDER BY r.id ASC limit $desde,$por_pagina");
+                $query = mysqli_query($conection, "SELECT r.reporte, v.tipo_reporte, u.correo FROM reporte_vendedor r INNER JOIN razones_reporte_vendedor v on r.id_razon = v.id INNER JOIN usuario u on r.id_reportado = u.idusuario ORDER BY r.id ASC limit $desde,$por_pagina");
                 mysqli_close($conection);
 				$result = mysqli_num_rows($query);
 
@@ -48,6 +49,7 @@
                     <tr>
                         <td><?php echo $data['reporte'] ?></td>
                         <td><?php echo $data['tipo_reporte'] ?></td>
+						<td><?php echo $data['correo'] ?></td>
 
                     </tr>
             <?php
