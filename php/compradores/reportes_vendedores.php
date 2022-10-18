@@ -128,7 +128,7 @@ if(!empty($_POST))
 			$imgReseña = $img_nombre.'.png';
 			$src = $destino.$imgReseña;
 		}
-		$query_insert = mysqli_query($conection,"INSERT INTO reporte_vendedor(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_vendedor','$imgReseña')");	
+		$query_insert = mysqli_query($conection,"INSERT INTO reporte_vendedor(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte_vendedor','$idUsuario','$descripcion_reporte_vendedor','$imgReseña')");	
 		
 		if($query_insert)
 		{
