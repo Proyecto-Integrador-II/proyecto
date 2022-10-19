@@ -56,7 +56,7 @@
 
             <a href="#">Recomendaciones</a>
             <ul>
-                <li><a href="#">Comida</a></li>
+                <li><a href="recomendaciones.php">Comida</a></li>
             </ul>
 
         </li>
