@@ -36,7 +36,7 @@
 				}
 				$desde = ($pagina-1)*$por_pagina;
 				$total_paginas = ceil($total_registro/$por_pagina);
-                $query = mysqli_query($conection, "SELECT r.reporte, v.tipo_reporte FROM reporte_vendedor r INNER JOIN razones_reporte_vendedor v on r.id = v.id ORDER BY r.id ASC limit $desde,$por_pagina");
+                $query = mysqli_query($conection, "SELECT r.reporte, v.tipo_reporte FROM reporte r INNER JOIN razones_reporte v on r.id_razon = v.id ORDER BY r.id ASC limit $desde,$por_pagina");
                 mysqli_close($conection);
 				$result = mysqli_num_rows($query);
 
