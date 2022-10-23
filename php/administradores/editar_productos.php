@@ -51,7 +51,7 @@
 						
 						
 
-						$query_update = mysqli_query($conection,"UPDATE producto SET nombre = '$nombre_producto',precio ='$precio_producto',lugar='$lugar_producto',descripcion ='$descripcion_producto',foto='$imgProducto' WHERE codproducto = $codproducto;");
+						$query_update = sqlsrv_query($conection,"UPDATE producto SET nombre = '$nombre_producto',precio ='$precio_producto',lugar='$lugar_producto',descripcion ='$descripcion_producto',foto='$imgProducto' WHERE codproducto = $codproducto;");
 
 						if($query_update)
 						{
@@ -77,14 +77,14 @@
                 }
 
                 $codproducto = $_GET['id'];
-                $query_producto = mysqli_query($conection,"SELECT p.codproducto, p.nombre AS producto, p.precio, l.nombre AS lugar,  p.descripcion, p.foto, u.nombre, l.id FROM producto p INNER JOIN usuario u ON p.proveedor = u.idusuario INNER JOIN lugares l ON l.id = p.lugar WHERE codproducto = $codproducto AND p.habilitado = 1;");
-                $result_producto = mysqli_num_rows($query_producto);
+                $query_producto = sqlsrv_query($conection,"SELECT p.codproducto, p.nombre AS producto, p.precio, l.nombre AS lugar,  p.descripcion, p.foto, u.nombre, l.id FROM producto p INNER JOIN usuario u ON p.proveedor = u.idusuario INNER JOIN lugares l ON l.id = p.lugar WHERE codproducto = $codproducto AND p.habilitado = 1;");
+                $result_producto = sqlsrv_num_rows($query_producto);
 				$foto = '';
 				$classRemove = 'notBlock';
 
-                if($result_producto > 0)
+                if($result_producto === false)
                 {
-                    $data_producto = mysqli_fetch_assoc($query_producto);
+                    $data_producto = sqlsrv_fetch_array($query_producto);
 					
 					$classRemove = '';
 					$foto = '<img id="img" src="../../img/uploads/'.$data_producto['foto'].'" alt="Producto">';
