@@ -127,17 +127,17 @@
 			$rol = 2;
 		}
 
-		$query = mysqli_query($conection, "SELECT * FROM usuario WHERE correo = '$correo'");
+		$query = sqlsrv_query($conection, "SELECT * FROM usuario WHERE correo = '$correo'");
 		
-		$result = mysqli_fetch_array($query);
+		$result = sqlsrv_fetch_array($query);
 
-		if($result > 0)
+		if($result === false)
 		{
 			echo 'ya existe';
 		}
 		else
 		{
-			$query_insert = mysqli_query($conection, "INSERT INTO usuario(nombre,apellido,correo,clave,rol,habilitado,calificacion) VALUES('$nombre','$apellido','$correo','$contraseña','$rol',1,0)");
+			$query_insert = sqlsrv_query($conection, "INSERT INTO usuario(nombre,apellido,correo,clave,rol,habilitado,calificacion) VALUES('$nombre','$apellido','$correo','$contraseña','$rol',1,0)");
 			if($query_insert)
 			{
 				echo 'creado';
