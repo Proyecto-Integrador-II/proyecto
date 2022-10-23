@@ -89,17 +89,18 @@
 		
 		if(!empty($_POST))
 		{
-			require_once '../todos/conexion.php';
+			require_once 'conexion.php';
 
 			$user = $_POST['email'];
 			$pass = $_POST['password'];
 
-			$query = mysqli_query($conection,"SELECT * FROM usuario WHERE correo = '$user' AND clave ='$pass'");
-			$result = mysqli_num_rows($query);
+			$query = sqlsrv_query($conection,"SELECT * FROM usuario WHERE correo = '$user' AND clave ='$pass'");
+			$result = sqlsrv_num_rows($query);
 
-			if($result >0)
+
+			if($result ===false)
 			{
-				$data = mysqli_fetch_array($query);
+				$data = sqlsrv_fetch_array($query);
 				$_SESSION['active'] = true;
 				$_SESSION['idUser'] = $data['idusuario'];
 				$_SESSION['nombre'] = $data['nombre'];
@@ -117,9 +118,9 @@
 					header('location: ../compradores/index.php');
 				}
 			}
-			else
+			else if($result ===true)
 			{
-				$alert = 'El usuario o la clave son incorrectos';
+				echo 'El usuario o la clave son incorrectos';
 				session_destroy();
 			}
 		}
