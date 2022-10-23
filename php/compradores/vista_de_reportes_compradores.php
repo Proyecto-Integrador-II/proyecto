@@ -26,8 +26,8 @@
             <?php
 				require_once '../todos/conexion.php';
 				
-				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM reporte_vendedor");
-				$result_register = mysqli_fetch_array($sql_registe);
+				$sql_registe = sqlsrv_query($conection,"SELECT COUNT(*) AS total_registro FROM reporte_vendedor");
+				$result_register = sqlsrv_fetch_array($sql_registe);
 				$total_registro = $result_register['total_registro'];
 				$por_pagina = 50;
 				if(empty($_GET['pagina'])){
@@ -37,13 +37,12 @@
 				}
 				$desde = ($pagina-1)*$por_pagina;
 				$total_paginas = ceil($total_registro/$por_pagina);
-                $query = mysqli_query($conection, "SELECT r.reporte, v.tipo_reporte, u.correo FROM reporte_vendedor r INNER JOIN razones_reporte_vendedor v on r.id_razon = v.id INNER JOIN usuario u on r.id_reportado = u.idusuario ORDER BY r.id ASC limit $desde,$por_pagina");
-                mysqli_close($conection);
-				$result = mysqli_num_rows($query);
+                $query = sqlsrv_query($conection, "SELECT r.reporte, v.tipo_reporte, u.correo FROM reporte_vendedor r INNER JOIN razones_reporte_vendedor v on r.id_razon = v.id INNER JOIN usuario u on r.id_reportado = u.idusuario ORDER BY r.id OFFSET $desde ROWS FETCH NEXT $por_pagina ROWS ONLY");
+				$result = sqlsrv_num_rows($query);
 
-                if($result > 0)
+                if($result === false)
                 {
-                    while ($data = mysqli_fetch_array($query))
+                    while ($data = sqlsrv_fetch_array($query))
                     {
                 ?>
                     <tr>
