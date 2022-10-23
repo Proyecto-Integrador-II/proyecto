@@ -7,12 +7,12 @@
         {
             $producto_id = $_POST['producto'];
 
-            $query = mysqli_query($conection, "SELECT codproducto, nombre FROM producto WHERE codproducto = '$producto_id' AND habilitado = 1");
-            mysqli_close($conection);
+            $query = sqlsrv_query($conection, "SELECT codproducto, nombre FROM producto WHERE codproducto = '$producto_id' AND habilitado = 1");
+            sqlsrv_close($conection);
 
-            $result = mysqli_num_rows($query);
-            if($result > 0){
-                $data = mysqli_fetch_assoc($query);
+            $result = sqlsrv_num_rows($query);
+            if($result === false){
+                $data = sqlsrv_fetch_assoc($query);
                 echo json_encode($data, JSON_UNESCAPED_UNICODE);
                 exit;
             }
@@ -23,12 +23,12 @@
         {
             $usuario_id = $_POST['usuario'];
 
-            $query = mysqli_query($conection, "SELECT idusuario, nombre FROM usuario WHERE idusuario = '$usuario_id' AND habilitado = 1");
-            mysqli_close($conection);
+            $query = sqlsrv_query($conection, "SELECT idusuario, nombre FROM usuario WHERE idusuario = '$usuario_id' AND habilitado = 1");
+            sqlsrv_close($conection);
 
-            $result = mysqli_num_rows($query);
-            if($result > 0){
-                $data = mysqli_fetch_assoc($query);
+            $result = sqlsrv_num_rows($query);
+            if($result === false){
+                $data = sqlsrv_fetch_assoc($query);
                 echo json_encode($data, JSON_UNESCAPED_UNICODE);
                 exit;
             }
@@ -41,8 +41,8 @@
                 echo 'error';
             }else{
                 $idproducto = $_POST['producto_id'];
-                $query_delete = mysqli_query($conection, "UPDATE producto SET habilitado = 0 WHERE codproducto = $idproducto");
-                mysqli_close($conection);
+                $query_delete = sqlsrv_query($conection, "UPDATE producto SET habilitado = 0 WHERE codproducto = $idproducto");
+                sqlsrv_close($conection);
 
                 if($query_delete){
                     echo 'ok';
@@ -57,8 +57,8 @@
                 echo 'error';
             }else{
                 $idusuario = $_POST['usuario_id'];
-                $query_delete = mysqli_query($conection, "UPDATE usuario SET habilitado = 0 WHERE idusuario = $idusuario");
-                mysqli_close($conection);
+                $query_delete = sqlsrv_query($conection, "UPDATE usuario SET habilitado = 0 WHERE idusuario = $idusuario");
+                sqlsrv_close($conection);
 
                 if($query_delete){
                     echo 'ok';
