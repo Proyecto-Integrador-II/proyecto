@@ -64,15 +64,15 @@
 						if(!empty($_REQUEST['proveedor'])) {
 							$pro = $_REQUEST['proveedor'];
 						}
-						$query_proveedor = mysqli_query($conection, "SELECT * FROM usuario where habilitado =1 and rol = 2 order by idusuario ASC");
-						$result_proveedor = mysqli_num_rows($query_proveedor);
+						$query_proveedor = sqlsrv_query($conection, "SELECT * FROM usuario where habilitado =1 and rol = 2 order by idusuario ASC");
+						$result_proveedor = sqlsrv_num_rows($query_proveedor);
 					?>
 					<select name="proveedor" id="search_proveedor">
 						<option value="" selected>Proveedor</option>
 						<?php 
-							if($result_proveedor >0)
+							if($result_proveedor === false)
 							{
-								while ($proveedor = mysqli_fetch_array($query_proveedor)) { 
+								while ($proveedor = sqlsrv_fetch_array($query_proveedor)) { 
 									if($pro ==$proverdor['idusuario'])
 										{
 						?>
@@ -92,9 +92,9 @@
 					<th>Acciones</th>
                 </tr>
             <?php
-				$sql_registe = mysqli_query($conection,"SELECT COUNT(*) AS total_registro FROM producto as p WHERE $where");
+				$sql_registe = sqlsrv_query($conection,"SELECT COUNT(*) AS total_registro FROM producto as p WHERE $where");
 				
-				$result_register = mysqli_fetch_array($sql_registe);
+				$result_register = sqlsrv_fetch_array($sql_registe);
 				$total_registro = $result_register['total_registro'];
 				$por_pagina = 50;
 				if(empty($_GET['pagina'])){
@@ -104,13 +104,14 @@
 				}
 				$desde = ($pagina-1)*$por_pagina;
 				$total_paginas = ceil($total_registro/$por_pagina);
-                $query = mysqli_query($conection, "SELECT p.codproducto as ID,p.nombre as Nombre,p.precio as Precio,l.nombre as Lugar,p.descripcion AS Descripcion,p.foto as Foto,u.nombre as Proveedor FROM producto p INNER JOIN lugares l ON p.lugar = l.id INNER JOIN usuario u ON u.idusuario = p.proveedor where p.habilitado =1 ORDER BY p.codproducto ASC limit $desde,$por_pagina");
-                $result = mysqli_num_rows($query);
+                $query = sqlsrv_query($conection, "SELECT p.codproducto as ID,p.nombre as Nombre,p.precio as Precio,l.nombre as Lugar,p.descripcion AS Descripcion,p.foto as Foto,u.nombre as Proveedor FROM producto p INNER JOIN lugares l ON p.lugar = l.id INNER JOIN usuario u ON u.idusuario = p.proveedor where p.habilitado =1 ORDER BY p.codproducto OFFSET $desde ROWS FETCH NEXT $por_pagina ROWS ONLY");
+                $result = sqlsrv_num_rows($query);
 
-                if($result > 0)
+                if($result === false)
                 {
-                    while ($data = mysqli_fetch_array($query))
+                    while ($data = sqlsrv_fetch_array($query))
                     {
+						$foto='../../img/uploads/'.$data['Foto'];
                 ?>
                     <tr>
                         <td><?php echo $data['ID'] ?></td>
