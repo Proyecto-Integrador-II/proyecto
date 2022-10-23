@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="./compra.css">
         <link rel="stylesheet" href="buscar.css">
         <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     
     <body>
@@ -36,13 +36,12 @@
 			</form>
             <section class="container products" id="productsSection">
                 <?php 
-                    $query = mysqli_query($conection, "SELECT codproducto, descripcion,foto,nombre,precio FROM producto WHERE habilitado = 1");
-                    mysqli_close($conection);
-                    $result = mysqli_num_rows($query);
+                    $query = sqlsrv_query($conection, "SELECT codproducto, descripcion,foto,nombre,precio FROM producto WHERE habilitado = 1");
+                    $result = sqlsrv_num_rows($query);
 
-                    if($result > 0)
+                    if($result === false)
                     {
-                        while ($data = mysqli_fetch_array($query))
+                        while ($data = sqlsrv_fetch_array($query))
                         {
                 ?>
                             <article id="buscar" class="product" data-id="<?php echo $data['codproducto'] ?>">
