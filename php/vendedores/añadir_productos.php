@@ -114,7 +114,7 @@
 				$imgProducto = $img_nombre.'.png';
 				$src = $destino.$imgProducto;
 			}
-			$query_insert = mysqli_query($conection,"INSERT INTO producto(nombre,precio,lugar,descripcion,foto,proveedor) VALUES ('$nombre_producto','$precio_producto','$lugar_producto','$descripcion_producto','$imgProducto','$usuario_id')");	
+			$query_insert = sqlsrv_query($conection,"INSERT INTO producto(nombre,precio,lugar,descripcion,foto,proveedor) VALUES ('$nombre_producto','$precio_producto','$lugar_producto','$descripcion_producto','$imgProducto','$usuario_id')");	
 			
 			if($query_insert)
             {
