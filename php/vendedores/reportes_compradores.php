@@ -26,16 +26,16 @@
 				}
  
 				$iduser = $_GET['id'];
-				$sql = mysqli_query($conection,"SELECT u.idusuario FROM usuario u WHERE idusuario = $iduser");
-				$result_sql = mysqli_num_rows($sql);
+				$sql = sqlsrv_query($conection,"SELECT u.idusuario FROM usuario u WHERE idusuario = $iduser");
+				$result_sql = sqlsrv_num_rows($sql);
  
-				if($result_sql == 0)
+				if($result_sql === true)
 				{
 					header("Location: lista_compradores.php");
 				}
   
 				else{
-					while($data = mysqli_fetch_array($sql)){
+					while($data = sqlsrv_fetch_array($sql)){
 						$iduser = $data['idusuario'];
 					}
 					 
@@ -124,7 +124,7 @@ if(!empty($_POST))
 			$imgReseña = $img_nombre.'.png';
 			$src = $destino.$imgReseña;
 		}
-		$query_insert = mysqli_query($conection,"INSERT INTO reporte(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_comprador','$imgReseña')");	
+		$query_insert = sqlsrv_query($conection,"INSERT INTO reporte(id_razon,id_reportado,reporte,foto) VALUES ('$razon_reporte','$idUsuario','$descripcion_reporte_comprador','$imgReseña')");	
 		
 		if($query_insert)
 		{
