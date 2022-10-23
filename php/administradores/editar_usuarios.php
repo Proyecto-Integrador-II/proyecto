@@ -35,14 +35,14 @@
 						$contraseña  = $_POST['password'];
 						
 
-						$query = mysqli_query($conection,"SELECT * FROM usuario WHERE (correo = '$correo' AND idusuario != $idUsuario) ");
+						$query = sqlsrv_query($conection,"SELECT * FROM usuario WHERE (correo = '$correo' AND idusuario != $idUsuario) ");
 
-						$result = mysqli_fetch_array($query);
+						$result = sqlsrv_fetch_array($query);
 
-						if($result > 0){
+						if($result === false){
 							echo 'El correo o el usuario ya existe';
 						}else{				
-							$sql_update = mysqli_query($conection,"UPDATE usuario SET nombre = '$nombre', apellido = '$apellido',correo='$correo',clave='$contraseña' WHERE idusuario= $idUsuario ");
+							$sql_update = sqlsrv_query($conection,"UPDATE usuario SET nombre = '$nombre', apellido = '$apellido',correo='$correo',clave='$contraseña' WHERE idusuario= $idUsuario ");
 
 							if($sql_update)
 							{
@@ -60,17 +60,12 @@
                 }
 
                 $iduser = $_GET['id'];
-                $sql = mysqli_query($conection,"SELECT u.idusuario, u.nombre, u.apellido, u.correo, (u.rol) as idrol, (r.rol) as rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE idusuario = $iduser");
-                $result_sql = mysqli_num_rows($sql);
+                $sql = sqlsrv_query($conection,"SELECT u.idusuario, u.nombre, u.apellido, u.correo, (u.rol) as idrol, (r.rol) as rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE idusuario = $iduser");
+                $result_sql = sqlsrv_num_rows($sql);
 
-                if($result_sql == 0)
-                {
-                    
-					
-                }
- 
-                else{
-                    while($data = mysqli_fetch_array($sql)){
+                if($result_sql === false){
+        
+                    while($data = sqlsrv_fetch_array($sql)){
                         $iduser = $data['idusuario'];
                         $nombre = $data['nombre'];
                         $apellido = $data['apellido'];
