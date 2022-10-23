@@ -1,5 +1,5 @@
 <?php
-$serverName = "pi-servidor.database.windows.net";
+$serverName = "pi-servidor.database.windows.net,1433";
 $connectionInfo = array( "Database"=>"PI-database", "UID"=>"administrador", "PWD"=>"Jeanparra17@");
 $conection = sqlsrv_connect( $serverName, $connectionInfo);
 
