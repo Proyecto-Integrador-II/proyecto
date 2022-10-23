@@ -58,6 +58,33 @@ CREATE TABLE reporte (
 CREATE INDEX index_razon ON reporte(id_razon);
 CREATE INDEX index_reportado ON reporte(id_reportado);
 
+CREATE TABLE razones_reporte_vendedor (
+  id int NOT NULL IDENTITY(1, 1),
+  tipo_reporte varchar(100) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+SET IDENTITY_INSERT razones_reporte_vendedor ON
+INSERT INTO razones_reporte_vendedor (id, tipo_reporte) VALUES
+(1, 'Fue irrespetuoso'),
+(2, 'No ofreció el producto'),
+(3, 'No se encontraba en el lugar de pedido'),
+(4, 'El producto estaba en malas condiciones'),
+(5, 'No tenía vueltos')
+SET IDENTITY_INSERT razones_reporte_vendedor OFF 
+
+CREATE TABLE reporte_vendedor (
+  id int NOT NULL IDENTITY(1, 1),
+  id_razon int NOT NULL,
+  id_reportado int NOT NULL,
+  reporte varchar(1000) NOT NULL,
+  foto text DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX index_razon_vendedor ON reporte_vendedor(id_razon);
+CREATE INDEX index_reportado_vendedor ON reporte_vendedor(id_reportado);
+
 CREATE TABLE rol (
   idrol int NOT NULL IDENTITY(1, 1),
   rol varchar(20) NOT NULL,
@@ -116,8 +143,12 @@ ADD CONSTRAINT FK_producto_lugares FOREIGN KEY (lugar) REFERENCES lugares (id) O
 CONSTRAINT FK_producto_usuario FOREIGN KEY (proveedor) REFERENCES usuario (idusuario) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE reporte
-ADD CONSTRAINT FK_reporte_razon FOREIGN KEY (id_razon) REFERENCES razones_reporte (id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT FK_reporte_razon FOREIGN KEY (id_razon) REFERENCES razones_reporte_vendedor (id) ON DELETE CASCADE ON UPDATE CASCADE,
 CONSTRAINT FK_reporte_usuario FOREIGN KEY (id_reportado) REFERENCES usuario (idusuario) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE reporte_vendedor
+ADD CONSTRAINT FK_reporte_razon_vendedor FOREIGN KEY (id_razon) REFERENCES razones_reporte (id) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT FK_reporte_usuario_vendedor FOREIGN KEY (id_reportado) REFERENCES usuario (idusuario) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 GO
